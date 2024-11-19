@@ -1,0 +1,41 @@
+/* src/styles/Sidebar.css */
+.sidebar {
+  position: sticky;
+  top: 0;
+  width: 750px;
+  height: 90vh;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--spacing-large);
+}
+
+.nav-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-links ul li {
+  margin-bottom: var(--spacing-medium);
+}
+
+.nav-links ul li a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.nav-links ul li a:hover {
+  color: var(--primary);
+}
+
+.social-icons a {
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
+
+.social-icons a:hover {
+  color: var(--primary);
+}

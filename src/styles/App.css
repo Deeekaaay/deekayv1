@@ -1,0 +1,22 @@
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  margin: 0px 120px;
+}
+
+/* src/styles/App.css */
+.custom-cursor {
+  position: fixed;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  /* Updated radial gradient to match body background color */
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.051) 0%, rgba(0, 11, 27, 0) 70%);
+  z-index: 9999;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
