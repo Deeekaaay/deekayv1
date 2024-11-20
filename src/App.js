@@ -1,11 +1,13 @@
 // src/App.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 import "./styles/App.css";
 import "./styles/theme.css";
 
 function App() {
+  const [activeSection, setActiveSection] = useState("about");
+
   useEffect(() => {
     const cursor = document.querySelector(".custom-cursor");
 
@@ -24,8 +26,8 @@ function App() {
   return (
     <div className="app">
       <div className="custom-cursor"></div>
-      <Sidebar />
-      <MainContent />
+      <Sidebar activeSection={activeSection} />
+      <MainContent onSectionChange={setActiveSection} />
     </div>
   );
 }

@@ -1,35 +1,89 @@
 /* src/styles/ProjectCard.css */
 .project-card {
-    margin-bottom: var(--spacing-large);
-    background-color: var(--background);
-    padding: var(--spacing-medium);
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .project-card h3 {
-    color: var(--primary);
-    margin-bottom: var(--spacing-small);
-  }
-  
-  .project-card p {
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-small);
-  }
-  
-  .project-card .tags {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: var(--spacing-small);
-  }
-  
-  .project-card .tags li {
-    background-color: var(--background);
-    color: var(--primary);
-    padding: 5px 10px;
-    border: 1px solid var(--primary);
-    border-radius: 4px;
-  }
-  
+  display: flex;
+  /* flex-direction: row; */
+  align-items: flex-start;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  background-color: #0d1a2d;
+
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.project-image {
+  align-items: start;
+  flex: 1; /* Takes 1/3 of the width */
+  max-width: 30%; /* Ensures image stays in proportion */
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.project-content {
+  flex: 2; /* Takes 2/3 of the width */
+  color: #ccd6f6;
+}
+
+.project-header h3 {
+  font-size: 1.25rem;
+  color: #64ffda;
+  margin: 0 0 10px 0;
+}
+
+.project-header h3 a {
+  color: #64ffda;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.project-header h3 a:hover {
+  color: rgba(100, 255, 218, 0.8);
+}
+
+.project-content p {
+  color: #8892b0;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.project-rating {
+  font-size: 0.9rem;
+  color: #8892b0;
+  margin: 10px 0;
+}
+
+.project-tags {
+  list-style: none;
+  margin: 15px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.project-tags li {
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.project-tags li:hover {
+  background: rgba(100, 255, 218, 0.2);
+}

@@ -1,46 +1,186 @@
 // src/components/MainContent.js
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "../styles/MainContent.css";
 import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
 
-const MainContent = () => {
+const MainContent = ({ onSectionChange }) => {
   useEffect(() => {
-    const handleScroll = () => {
-      const aboutSection = document.querySelector(".about-section");
-      const paragraphs = aboutSection.querySelectorAll("p");
-
-      paragraphs.forEach((p, index) => {
-        const position = p.getBoundingClientRect();
-        if (position.top < window.innerHeight) {
-          setTimeout(() => p.classList.add("visible"), index * 100);
+    const handleSectionChange = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          onSectionChange(entry.target.id); // Notify the parent of the active section
         }
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const options = {
+      threshold: 0.3, // 30% of the section must be visible
+    };
 
+    const observer = new IntersectionObserver(handleSectionChange, options);
+
+    // Select all sections to observe
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => observer.observe(section));
+
+    // Cleanup the observer on unmount
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, [onSectionChange]);
   const experienceData = [
     {
-      yearRange: "2024 — Present",
-      title: "Senior Frontend Engineer, Accessibility",
-      company: "Klaviyo",
+      yearRange: "Nov 2024 – Present",
+      title: "Software Engineer | Internship",
+      company: "AquaTerra",
+      link: "https://aqua-terra.com.au/",
+      location: "Carlton, Victoria, Australia",
       description:
-        "Build and maintain critical components used to construct Klaviyo’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
-      tags: ["JavaScript", "TypeScript", "React", "Storybook"],
-      link: "https://www.klaviyo.com",
+        "Leading the restructuring of AquaTerra's IoT application with AWS, React.js, and Node.js. Delivering scalable, secure solutions while enhancing real-time analytics and user engagement for sustainable agriculture.",
+      tags: [
+        "AWS",
+        "React.js",
+        "Node.js",
+        "AWSIoT",
+        "Postgresql",
+        "Dashboards",
+        "Real-Time Alerts",
+      ],
+      details: [
+        "Redesigned the application architecture to improve performance, scalability, and maintainability.",
+        "Developed real-time alerts, customizable dashboards, and advanced analytics to enhance user engagement.",
+        "Integrated secure IoT protocols for seamless device communication.",
+        "Collaborated with engineers, data scientists, and product managers to align technical solutions with business objectives.",
+        "Deployed encryption and authentication protocols to safeguard sensitive data.",
+        "Enabled actionable insights that empowered farmers to adopt sustainable practices.",
+      ],
     },
     {
-      yearRange: "2024 — Present",
-      title: "Senior Frontend Engineer, Accessibility",
-      company: "Klaviyo",
+      yearRange: "Aug 2023 – Feb 2024",
+      title: "Software Engineer | Backend Specialist",
+      company: "Avasoft",
+      link: "http://www.avasoft.com",
+      location: "Chennai, Tamil Nadu, India",
       description:
-        "Build and maintain critical components used to construct Klaviyo’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
-      tags: ["JavaScript", "TypeScript", "React", "Storybook"],
-      link: "https://www.klaviyo.com",
+        "Spearheaded the development of a cutting-edge assessment platform using TypeScript, GoLang, and MSSQL. Improved accuracy and efficiency with robust APIs and agile processes.",
+      tags: [
+        "TypeScript",
+        "GoLang",
+        "MSSQL",
+        "MongoDB",
+        "Okta",
+        "Azure",
+        "SonarCloud",
+      ],
+      details: [
+        "Achieved a 25% improvement in assessment accuracy with actionable insights from analytics.",
+        "Integrated APIs like Okta, Azure, and SonarCloud for seamless functionality.",
+        "Enhanced backend performance through rigorous code reviews and modular architecture.",
+        "Collaborated with cross-functional teams to align technical solutions with business goals.",
+        "Adhered to Agile methodologies and the 4D process (Define, Design, Develop, Deploy) to ensure timely delivery.",
+        "Documented pseudocode mapped to implementation for improved code clarity and maintainability.",
+      ],
+    },
+    {
+      yearRange: "Dec 2022 – Aug 2023",
+      title: "Software Engineer",
+      company: "Avasoft",
+      link: "http://www.avasoft.com",
+      location: "Chennai, Tamil Nadu, India",
+      description:
+        "Engineered a scalable logistics platform using PHP Symfony, Go, and jQuery, delivering new features and improving operational efficiency for global supply chains.",
+      tags: ["PHP Symfony", "GoLang", "jQuery", "HTML.Twig", "Unit Testing"],
+      details: [
+        "Designed and implemented new modular services to meet client requirements.",
+        "Improved system scalability and maintainability by integrating complex systems into streamlined architecture.",
+        "Collaborated with cross-functional teams to align technical deliverables with business goals.",
+        "Conducted rigorous unit testing to ensure reliability and functionality.",
+        "Enhanced client engagement through personalized, scalable solutions.",
+      ],
+    },
+    {
+      yearRange: "Aug 2022 – Dec 2022",
+      title: "Software Engineer Intern",
+      company: "Avasoft",
+      link: "http://www.avasoft.com",
+      location: "Chennai, Tamil Nadu, India",
+      description:
+        "Contributed to full-stack development with React.js, Node.js, and MySQL. Played a critical role in feature development and testing under senior guidance.",
+      tags: ["React.js", "Node.js", "MySQL"],
+      details: [
+        "Developed and tested front-end and back-end features for a web application.",
+        "Collaborated with senior developers during team meetings, code reviews, and brainstorming sessions.",
+        "Assisted in debugging and unit testing to ensure code quality.",
+        "Learned best practices in full-stack development, earning a full-time Software Engineer position.",
+      ],
+    },
+    {
+      yearRange: "Jan 2022 – Apr 2022",
+      title: "Web App Developer | Volunteer",
+      company: "SAEC | S.A. Engineering College",
+      location: "Chennai, Tamil Nadu, India",
+      link: "https://www.saec.ac.in/",
+      description:
+        "Developed a responsive invitation website for EMTEEC 2022, enabling seamless participant registration and effective information dissemination.",
+      tags: ["HTML5", "CSS3", "JavaScript", "Netlify"],
+      details: [
+        "Created intuitive navigation menus for effortless user interaction.",
+        "Designed and implemented responsive layouts for cross-device compatibility.",
+        "Collaborated with organizers to ensure branding and design objectives were met.",
+        "Successfully facilitated participant registrations and boosted event outreach.",
+      ],
+    },
+  ];
+  const projectData = [
+    {
+      title: "EMTEEC 2022 Invitation Website",
+      description:
+        "Created a responsive invitation website for EMTEEC 2022 using HTML5, CSS3, and JavaScript. Delivered user-friendly navigation, device compatibility, and efficient registration, collaborating with organizers to ensure seamless information sharing.",
+      tags: ["HTML5", "CSS3", "JavaScript", "Netlify"],
+      image: "images/emteec.png", // Replace with the actual image URL
+      link: "https://emteecwhite.netlify.app/",
+    },
+  ];
+  const certificationData = [
+    {
+      title: "Innovation for Global Cities",
+      description:
+        "This credential earner demonstrates the ability to identify innovation strategies, apply them to global issues, and navigate complex environments with diverse stakeholders and competing demands.",
+      tags: [
+        "Decision Making",
+        "Presentation Skills",
+        "Problem Solving",
+        "Research And Analysis",
+        "Teamwork",
+      ],
+      image: "images/innovation-for-global-cities.2.png", // Replace with the actual image URL
+      link: "https://www.credly.com/badges/837c9dbf-fa77-4fe4-bd62-8e41dadd3d4e/public_url",
+    },
+    {
+      title: "Womin Djeka Indigenous Orientation",
+      description:
+        "Earners of Womin Djeka Indigenous Orientation demonstrate awareness of Aboriginal and Torres Strait Islander cultures, commit to Dhumbah Goorowa, and value First Nations' self-determination as custodians of this land.",
+      tags: [
+        "Cultural And Civic Awareness",
+        "Indigenous Awareness And understAnding",
+        "Reflecting",
+      ],
+      image: "images/womin-djeka-indigenous-orientation.png", // Replace with the actual image URL
+      link: "https://www.credly.com/badges/45217a8f-a0fc-4e5e-a803-31f742849372/public_url",
+    },
+    {
+      title: "ChatGPT for Project Managers: 10x Your Productivity with AI",
+      description:
+        "Learn how to streamline project management with ChatGPT. Jean Kang shares tips on planning, risk management, tailored communication, and tracking progress to enhance efficiency and make data-driven decisions.",
+      tags: [
+        "Project Management",
+        "Artificial Intelligence for Business",
+        "ChatGPT",
+        "Prompt Engineering",
+      ],
+      image: "images/linkedin_logo.jpg", // Replace with the actual image URL
+      link: "https://www.linkedin.com/learning/certificates/80928a5eee66b99e7ee781f2bb5bd9da54dc8d076d5859fe7485cb04912d0cb7",
     },
   ];
   return (
@@ -101,11 +241,14 @@ const MainContent = () => {
         ))}
       </section>
       <section id="projects">
-        <ProjectCard
-          title="Build a Spotify Connected App"
-          description="A video course teaching how to build a web app with the Spotify Web API."
-          tags={["React", "Express", "Spotify API"]}
-        />
+        {projectData.map((project, index) => (
+          <ProjectCard key={index} {...project} />
+        ))}
+      </section>
+      <section id="certifications">
+        {certificationData.map((project, index) => (
+          <ProjectCard key={index} {...project} />
+        ))}
       </section>
     </main>
   );

@@ -2,7 +2,7 @@
 .sidebar {
   position: sticky;
   top: 0;
-  width: 750px;
+  width: 850px;
   height: 90vh;
   color: var(--text-main);
   display: flex;
@@ -11,31 +11,91 @@
   padding: var(--spacing-large);
 }
 
+.sidebar h1{
+  font-size: 40px;
+  margin-bottom: var(--spacing-small);
+}
+
 .nav-links ul {
   list-style: none;
   padding: 0;
 }
 
 .nav-links ul li {
-  margin-bottom: var(--spacing-medium);
+  position: relative;
 }
 
 .nav-links ul li a {
-  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  padding: 10px 0; /* Spacing around the link */
   text-decoration: none;
-  font-size: 1.2rem;
+  transition: color 0.3s ease;
 }
 
-.nav-links ul li a:hover {
-  color: var(--primary);
+.nav-links ul li a .nav-indicator {
+  display: inline-block;
+  margin-right: 16px; /* Spacing between line and text */
+  height: 2px;
+  width: 32px; /* Default width */
+  background-color: #64748b; /* Muted slate color */
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-links ul li a .nav-text {
+  font-size: 0.75rem; /* Matches the text-xs size */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* Matches tracking-widest */
+  color: #94a3b8; /* Muted slate text color */
+  transition: color 0.3s ease;
+}
+
+.nav-links ul li a:hover .nav-indicator,
+.nav-links ul li a:focus-visible .nav-indicator {
+  width: 64px; /* Expanded width */
+  background-color: #e2e8f0; /* Light slate color */
+}
+
+.nav-links ul li a:hover .nav-text,
+.nav-links ul li a:focus-visible .nav-text {
+  color: #e2e8f0; /* Light slate color */
+}
+
+.nav-links ul li a.active .nav-indicator {
+  width: 64px; /* Expanded line for the active section */
+  background-color: var(--primary); /* Highlighted color */
+}
+
+.nav-links ul li a.active .nav-text {
+  color: var(--primary); /* Highlighted text color */
 }
 
 .social-icons a {
   color: var(--text-muted);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-right: 15px;
 }
 
 .social-icons a:hover {
   color: var(--primary);
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Use full width for smaller screens */
+    height: auto;
+    position: relative; /* No sticky positioning */
+    padding: var(--spacing-medium); /* Reduce padding */
+  }
+
+  .nav-links ul li a {
+    justify-content: center; /* Center align items for smaller screens */
+  }
+
+  .social-icons {
+    justify-content: center; /* Center social icons */
+    margin-top: var(--spacing-medium);
+  }
+}
+

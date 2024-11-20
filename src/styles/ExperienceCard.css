@@ -1,7 +1,6 @@
 /* src/styles/ExperienceCard.css */
 .experience-card {
-
-  padding: 20px;
+  padding: 19px;
   margin: 20px 0;
   /* box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3); Stronger shadow */
   /* background-color: rgba(0, 11, 27, 0.85); Slightly lighter background */
@@ -23,7 +22,7 @@
 }
 
 .experience-header h3 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: #ccd6f6; /* Light text color */
   margin: 0;
 }
@@ -33,6 +32,7 @@
 }
 
 .experience-header h3 a {
+  cursor: pointer;
   color: #64ffda; /* Link color */
   text-decoration: none;
   font-size: 1rem;
@@ -44,6 +44,7 @@
 }
 
 .experience-body p {
+  cursor: pointer;
   margin: 10px 0;
   color: #8892b0;
   line-height: 1.5;
@@ -63,11 +64,28 @@
   color: #64ffda;
   padding: 5px 10px;
   border-radius: 5px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   transition: background 0.3s ease;
 }
 
 .experience-tags li:hover {
   background: rgba(100, 255, 218, 0.2); /* Brighter on hover */
+}
+
+.experience-details {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #233554;
+  color: #8892b0;
+  line-height: 1.5;
+  transition: max-height 0.3s ease;
+}
+
+.experience-details ul {
+  padding-left: 20px;
+}
+
+.experience-details li {
+  margin-bottom: 10px;
 }
