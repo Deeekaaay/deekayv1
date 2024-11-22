@@ -13,7 +13,7 @@ const ProjectCard = ({ title, description, tags, image, link, rating }) => {
       <div className="project-content">
         <div className="project-header">
           <h3>
-            <a href={link} target="_blank" rel="noopener noreferrer">
+            <a href={link ?? "#"} target="_blank" rel="noopener noreferrer">
               {title} ↗
             </a>
           </h3>

@@ -1,10 +1,10 @@
-
 {
   "name": "deekayv1",
   "version": "0.1.0",
   "homepage": "https://Deeekaaay.github.io/deekayv1",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@flaticon/flaticon-uicons": "^3.3.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import "../styles/MainContent.css";
 import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
+import emailjs from "@emailjs/browser";
 
 const MainContent = ({ onSectionChange }) => {
   useEffect(() => {
@@ -29,6 +30,59 @@ const MainContent = ({ onSectionChange }) => {
       sections.forEach((section) => observer.unobserve(section));
     };
   }, [onSectionChange]);
+
+  async function sendMail(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    const formData = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      message: document.getElementById("message").value.trim(),
+    };
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      alert("Please fill out all fields before sending!");
+      return;
+    }
+
+    try {
+      // Replace these with your EmailJS credentials
+      const serviceId = "service_tirj05g";
+      const templateId = "template_3bd0z5a";
+      const userId = "bJTHMkGllaUZj-6c4";
+
+      const emailParams = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      };
+
+      // Send the email
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        emailParams,
+        userId
+      );
+
+      if (result.status === 200) {
+        alert(
+          "Message sent successfully! 🎉 Check your email for confirmation. 😊"
+        );
+
+        // Clear the form after successful submission
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Failed to send your message. Please try again.");
+    }
+  }
   const experienceData = [
     {
       yearRange: "Nov 2024 – Present",
@@ -138,7 +192,7 @@ const MainContent = ({ onSectionChange }) => {
       description:
         "Created a responsive invitation website for EMTEEC 2022 using HTML5, CSS3, and JavaScript. Delivered user-friendly navigation, device compatibility, and efficient registration, collaborating with organizers to ensure seamless information sharing.",
       tags: ["HTML5", "CSS3", "JavaScript", "Netlify"],
-      image: "images/emteec.png", // Replace with the actual image URL
+      image: "images/emteec.png",
       link: "https://emteecwhite.netlify.app/",
     },
   ];
@@ -154,7 +208,7 @@ const MainContent = ({ onSectionChange }) => {
         "Research And Analysis",
         "Teamwork",
       ],
-      image: "images/innovation-for-global-cities.2.png", // Replace with the actual image URL
+      image: "images/innovation-for-global-cities.2.png",
       link: "https://www.credly.com/badges/837c9dbf-fa77-4fe4-bd62-8e41dadd3d4e/public_url",
     },
     {
@@ -166,7 +220,7 @@ const MainContent = ({ onSectionChange }) => {
         "Indigenous Awareness And understAnding",
         "Reflecting",
       ],
-      image: "images/womin-djeka-indigenous-orientation.png", // Replace with the actual image URL
+      image: "images/womin-djeka-indigenous-orientation.png",
       link: "https://www.credly.com/badges/45217a8f-a0fc-4e5e-a803-31f742849372/public_url",
     },
     {
@@ -179,7 +233,7 @@ const MainContent = ({ onSectionChange }) => {
         "ChatGPT",
         "Prompt Engineering",
       ],
-      image: "images/linkedin_logo.jpg", // Replace with the actual image URL
+      image: "images/linkedin_logo.jpg",
       link: "https://www.linkedin.com/learning/certificates/80928a5eee66b99e7ee781f2bb5bd9da54dc8d076d5859fe7485cb04912d0cb7",
     },
   ];
@@ -249,6 +303,42 @@ const MainContent = ({ onSectionChange }) => {
         {certificationData.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
+      </section>
+      <section id="contact">
+        <p>
+          💡 "Got a genius project idea? Or just want to chat about life, code,
+          or your favorite anime? 🎥✨ Drop me a message below, and I promise to
+          respond faster than Goku can go Super Saiyan! 🚀
+        </p>
+        <form id="contact-form">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your Name"
+            required
+          />
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your Email"
+            required
+          />
+
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required
+          ></textarea>
+
+          <button type="button" onClick={sendMail}>
+            Send
+          </button>
+        </form>
       </section>
     </main>
   );

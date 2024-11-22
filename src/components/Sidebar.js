@@ -14,7 +14,7 @@ const Sidebar = ({ activeSection }) => {
           Scalable Solutions
         </p>
       </section>
-      <nav class="nav-links">
+      <nav className="nav-links">
         <ul>
           <li>
             <a
@@ -23,8 +23,8 @@ const Sidebar = ({ activeSection }) => {
               }`}
               href="#about"
             >
-              <span class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-              <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+              <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+              <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
                 About
               </span>
             </a>
@@ -36,8 +36,8 @@ const Sidebar = ({ activeSection }) => {
               }`}
               href="#experience"
             >
-              <span class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-              <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+              <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+              <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
                 Experience
               </span>
             </a>
@@ -49,8 +49,8 @@ const Sidebar = ({ activeSection }) => {
               }`}
               href="#projects"
             >
-              <span class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-              <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+              <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+              <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
                 Projects
               </span>
             </a>
@@ -62,9 +62,22 @@ const Sidebar = ({ activeSection }) => {
               }`}
               href="#certifications"
             >
-              <span class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-              <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+              <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+              <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
                 certifications
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              className={`group flex items-center py-3 ${
+                activeSection === "contact" ? "active" : ""
+              }`}
+              href="#contact"
+            >
+              <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+              <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+                contact
               </span>
             </a>
           </li>
@@ -77,35 +90,35 @@ const Sidebar = ({ activeSection }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fi fi-brands-google"></i>
+          <i className="fi fi-brands-google"></i>
         </a>
         <a
           href="https://github.com/Deeekaaay"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fi fi-brands-github"></i>
+          <i className="fi fi-brands-github"></i>
         </a>
         <a
           href="https://www.linkedin.com/in/deeekay/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fi fi-brands-linkedin"></i>
+          <i className="fi fi-brands-linkedin"></i>
         </a>
         <a
           href="https://www.instagram.com/_.dinesshhh._/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fi fi-brands-instagram"></i>
+          <i className="fi fi-brands-instagram"></i>
         </a>
         <a
           href="https://x.com/deekayaussie"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fi fi-brands-twitter-alt"></i>
+          <i className="fi fi-brands-twitter-alt"></i>
         </a>
       </div>
     </aside>
