@@ -1,7 +1,7 @@
 /* src/styles/ExperienceCard.css */
 .experience-card {
-  padding: 19px;
-  margin: 20px 0;
+  padding: var(--card-padding);
+  margin: var(--card-margin);
 
 }
 
@@ -9,7 +9,7 @@
   transform: translateY(-10px); /* Moves up on hover */
   background-color: #0d1a2d; /* Initial dark background */
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: var(--shadow-box); /* Subtle shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
@@ -86,4 +86,17 @@
 
 .experience-details li {
   margin-bottom: 10px;
+}
+
+@media (max-width: 850px) {
+  .experience-card {
+    padding: var(--spacing-medium);
+    margin: var(--card-margin);
+    transform: translateY(-10px); /* Moves up on hover */
+    background-color: #0d1a2d; /* Initial dark background */
+    border-radius: 10px;
+    box-shadow: var(--shadow-box); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  
+  }
 }

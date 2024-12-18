@@ -4,6 +4,7 @@
     --primary: #64ffda;
     --text-main: #ccd6f6;
     --text-muted: #8892b0;
+    --shadow-box:0 8px 24px rgba(0, 0, 0, 0.1);
   
     /* Typography */
     --font-family: 'Inter', sans-serif;
@@ -15,6 +16,11 @@
     --spacing-small: 8px;
     --spacing-medium: 16px;
     --spacing-large: 32px;
+    --card-padding: 20px;
+    --card-margin: 20px 0px;
+    --section-margin: 0px 0px 100px 0px;
+
+
   }
   
   body {

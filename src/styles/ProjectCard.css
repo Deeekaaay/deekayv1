@@ -4,17 +4,10 @@
   /* flex-direction: row; */
   align-items: flex-start;
   border-radius: 10px;
-  padding: 20px;
-  margin: 20px 0;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: var(--card-padding);
+  margin: var(--card-margin);
+  box-shadow: var(--shadow-box);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-  background-color: #0d1a2d;
-
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 .project-image {
@@ -86,4 +79,12 @@
 
 .project-tags li:hover {
   background: rgba(100, 255, 218, 0.2);
+}
+@media (max-width: 850px) {
+  .project-image img {
+    display: none;
+  }
+  .project-card {
+    display: inline;
+  }
 }

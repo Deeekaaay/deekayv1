@@ -1,22 +1,24 @@
 // src/components/MainContent.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/MainContent.css";
 import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
 import emailjs from "@emailjs/browser";
 
 const MainContent = ({ onSectionChange }) => {
+  const [activeSection, setActiveSection] = useState("about");
   useEffect(() => {
     const handleSectionChange = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          setActiveSection(entry.target.id); // Update the active section
           onSectionChange(entry.target.id); // Notify the parent of the active section
         }
       });
     };
 
     const options = {
-      threshold: 0.3, // 30% of the section must be visible
+      threshold: 0.2, // 20% of the section must be visible
     };
 
     const observer = new IntersectionObserver(handleSectionChange, options);
@@ -192,8 +194,16 @@ const MainContent = ({ onSectionChange }) => {
       description:
         "Created a responsive invitation website for EMTEEC 2022 using HTML5, CSS3, and JavaScript. Delivered user-friendly navigation, device compatibility, and efficient registration, collaborating with organizers to ensure seamless information sharing.",
       tags: ["HTML5", "CSS3", "JavaScript", "Netlify"],
-      image: "images/emteec.png",
+      image: "assets/images/emteec.png",
       link: "https://emteecwhite.netlify.app/",
+    },
+    {
+      title: "Personal Portfolio Website",
+      description:
+        "Designed and developed an interactive and responsive portfolio website using React.js and CSS. Showcases projects, skills, and experience with a modern design, dynamic animations, and user-friendly navigation. Includes an automated contact form powered by EmailJS.",
+      tags: ["React.js", "CSS", "EmailJS", "Responsive Design"],
+      image: "assets/images/portfolio.png",
+      link: "https://deeekaaay.github.io/deekayv1/", // Replace with your live portfolio URL
     },
   ];
   const certificationData = [
@@ -208,7 +218,7 @@ const MainContent = ({ onSectionChange }) => {
         "Research And Analysis",
         "Teamwork",
       ],
-      image: "images/innovation-for-global-cities.2.png",
+      image: "assets/images/innovation-for-global-cities.2.png",
       link: "https://www.credly.com/badges/837c9dbf-fa77-4fe4-bd62-8e41dadd3d4e/public_url",
     },
     {
@@ -220,7 +230,7 @@ const MainContent = ({ onSectionChange }) => {
         "Indigenous Awareness And understAnding",
         "Reflecting",
       ],
-      image: "images/womin-djeka-indigenous-orientation.png",
+      image: "assets/images/womin-djeka-indigenous-orientation.png",
       link: "https://www.credly.com/badges/45217a8f-a0fc-4e5e-a803-31f742849372/public_url",
     },
     {
@@ -233,13 +243,20 @@ const MainContent = ({ onSectionChange }) => {
         "ChatGPT",
         "Prompt Engineering",
       ],
-      image: "images/linkedin_logo.jpg",
+      image: "assets/images/linkedin_logo.jpg",
       link: "https://www.linkedin.com/learning/certificates/80928a5eee66b99e7ee781f2bb5bd9da54dc8d076d5859fe7485cb04912d0cb7",
     },
   ];
   return (
     <main className="content">
       <section id="about" className="about-section">
+        <h2
+          className={`mobile-section-heading ${
+            activeSection === "about" ? "active" : ""
+          }`}
+        >
+          Hello World!
+        </h2>
         <div className="about-intro">
           <p>
             From curious beginnings to innovative solutions, my journey as a
@@ -290,16 +307,38 @@ const MainContent = ({ onSectionChange }) => {
       </section>
 
       <section id="experience">
+        <h2
+          className={`mobile-section-heading ${
+            activeSection === "experience" ? "active" : ""
+          }`}
+        >
+          Experience
+        </h2>
         {experienceData.map((experience, index) => (
           <ExperienceCard key={index} {...experience} />
         ))}
       </section>
+
       <section id="projects">
+        <h2
+          className={`mobile-section-heading ${
+            activeSection === "projects" ? "active" : ""
+          }`}
+        >
+          Projects
+        </h2>
         {projectData.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
       </section>
       <section id="certifications">
+        <h2
+          className={`mobile-section-heading ${
+            activeSection === "certifications" ? "active" : ""
+          }`}
+        >
+          Certifications
+        </h2>
         {certificationData.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
