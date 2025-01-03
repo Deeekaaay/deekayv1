@@ -9,7 +9,7 @@ function App() {
   const [activeSection, setActiveSection] = useState("about");
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
-    const sourceParam = queryParams.get("source"); // Get the 'source' parameter
+    const sourceParam = queryParams.get("source") ?? "linkedin or someone"; // Get the 'source' parameter
 
     if (sourceParam) {
       const botToken = "7325453256:AAHe0NiZ2lWu34Ci3AXNUxA5MfRxuQmDFV8"; // Replace with your bot token

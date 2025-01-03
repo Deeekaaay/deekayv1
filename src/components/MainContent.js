@@ -276,11 +276,12 @@ const MainContent = ({ onSectionChange }) => {
             </p>
             <p>
               Embracing the ever-evolving tech landscape, I immersed myself in{" "}
-              <strong>React.js</strong>,<strong> Node.js</strong> and{" "}
-              <strong>GoLang</strong>, crafting responsive and efficient web
-              applications. One standout project was an assessment application
-              that <strong>boosted evaluation accuracy by 25%</strong>,
-              underscoring my commitment to delivering impactful solutions.
+              <strong>React.js</strong>,<strong> Node.js</strong>,
+              <strong> GoLang</strong> and <strong>PHP</strong>, crafting
+              responsive and efficient web applications. One standout project
+              was an assessment application that{" "}
+              <strong>boosted evaluation accuracy by 25%</strong>, underscoring
+              my commitment to delivering impactful solutions.
             </p>
           </article>
 
