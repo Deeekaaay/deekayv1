@@ -190,6 +190,14 @@ const MainContent = ({ onSectionChange }) => {
   ];
   const projectData = [
     {
+      title: "Facial Recognition and Detection Scripts",
+      description:
+        "Developed a suite of Python scripts focusing on facial recognition, detection, and eye detection. These tools facilitate image processing tasks such as cropping faces from datasets, real-time face detection, and resizing images for analysis.",
+      tags: ["Python", "OpenCV", "Image Processing", "Computer Vision"],
+      image: "assets/images/facereco.png",
+      link: "https://github.com/Deeekaaay/python",
+    },
+    {
       title: "EMTEEC 2022 Invitation Website",
       description:
         "Created a responsive invitation website for EMTEEC 2022 using HTML5, CSS3, and JavaScript. Delivered user-friendly navigation, device compatibility, and efficient registration, collaborating with organizers to ensure seamless information sharing.",
@@ -277,7 +285,7 @@ const MainContent = ({ onSectionChange }) => {
             <p>
               Embracing the ever-evolving tech landscape, I immersed myself in{" "}
               <strong>React.js</strong>,<strong> Node.js</strong>,
-              <strong> GoLang</strong> and <strong>PHP</strong>, crafting
+              <strong> GoLang</strong> and <strong>Python</strong>, crafting
               responsive and efficient web applications. One standout project
               was an assessment application that{" "}
               <strong>boosted evaluation accuracy by 25%</strong>, underscoring

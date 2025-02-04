@@ -7,11 +7,12 @@ const Sidebar = ({ activeSection }) => {
     <aside className="sidebar">
       <section id="about-section">
         <h1>Dineshkumar Suresh</h1>
-        <h3>Software Engineer | AI Engineer</h3>
+        <h3>Innovative Software Engineer | AI Enthusiast</h3>
         <p>
-          Innovative Full-Stack Developer | Expertise in React.js, Node.js,
-          GoLang, Data Visualization (D3.js) | Agile Enthusiast | Building
-          Scalable Solutions
+          Aspiring Software Engineer | RMIT Student | Proficient in React.js,
+          Node.js, Python, and GoLang | Exploring AWS, IoT, and AI | Agile
+          Enthusiast | Building Scalable and Impactful
+          Solutions
         </p>
       </section>
       <nav className="nav-links">
