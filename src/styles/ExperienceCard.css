@@ -7,7 +7,7 @@
 
 .experience-card:hover {
   transform: translateY(-10px); /* Moves up on hover */
-  background-color: #0d1a2d; /* Initial dark background */
+  background-color: var(--background-hover); /* Initial dark background */
   border-radius: 10px;
   box-shadow: var(--shadow-box); /* Subtle shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
@@ -15,36 +15,35 @@
 
 .experience-header p {
   font-size: 0.9rem;
-  color: #8892b0; /* Muted text color */
+  color: var(--text-muted); /* Muted text color */
   margin: 0 0 10px 0;
 }
 
 .experience-header h3 {
   font-size: 1.2rem;
-  color: #ccd6f6; /* Light text color */
   margin: 0;
 }
 
 .experience-header h3 span {
-  color: #64ffda; /* Highlight for the company */
+  color: var(--primary); /* Highlight for the company */
 }
 
 .experience-header h3 a {
   cursor: pointer;
-  color: #64ffda; /* Link color */
+  color: var(--primary); /* Link color */
   text-decoration: none;
   font-size: 1rem;
   margin-left: 5px;
 }
 
 .experience-header h3 a:hover {
-  color: rgba(100, 255, 218, 0.8); /* Slightly transparent hover color */
+  color: var(--cards-text-hover) /* Slightly transparent hover color */
 }
 
 .experience-body p {
   cursor: pointer;
   margin: 10px 0;
-  color: #8892b0;
+  color: var(--text-muted);
   line-height: 1.5;
 }
 
@@ -58,8 +57,8 @@
 }
 
 .experience-tags li {
-  background: rgba(100, 255, 218, 0.1); /* Subtle background for tags */
-  color: #64ffda;
+  background: var(--cards-text-background); /* Subtle background for tags */
+  color: var(--primary);
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 0.8rem;
@@ -68,14 +67,14 @@
 }
 
 .experience-tags li:hover {
-  background: rgba(100, 255, 218, 0.2); /* Brighter on hover */
+  background: var(--cards-text-background-hover); /* Brighter on hover */
 }
 
 .experience-details {
   margin-top: 15px;
   padding-top: 10px;
-  border-top: 1px solid #233554;
-  color: #8892b0;
+  border-top: var(--cards-border);
+  color: var(--text-muted);
   line-height: 1.5;
   transition: max-height 0.3s ease;
 }
@@ -93,7 +92,7 @@
     padding: var(--spacing-medium);
     margin: var(--card-margin);
     transform: translateY(-10px); /* Moves up on hover */
-    background-color: #0d1a2d; /* Initial dark background */
+    background-color: var(--background-hover); /* Initial dark background */
     border-radius: 10px;
     box-shadow: var(--shadow-box); /* Subtle shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;

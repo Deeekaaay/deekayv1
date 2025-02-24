@@ -41,7 +41,7 @@
 
 #contact {
   padding: 10px 50px;
-  color: #ccd6f6;
+  color: var(--text-main);
   box-shadow: var(--shadow-box); /* Subtle shadow */
 
 }
@@ -51,7 +51,7 @@
   text-align: center;
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #64ffda; /* Primary color */
+  color: var(--primary); /* Primary color */
 }
 
 #contact-form {
@@ -66,24 +66,24 @@
 #contact-form input,
 #contact-form textarea {
   margin-top: 10px;
-  background-color: #112240;
-  border: 1px solid #64ffdb86;
+  background-color: var(--input-box-background);
+  border: var(--input-box-border);
   border-radius: 5px;
   padding: 10px;
-  color: #ccd6f6;
+  color: var(--text-main);
   font-size: 1rem;
 }
 
 #contact-form input:focus,
 #contact-form textarea:focus {
   outline: none;
-  border-color: #64ffda;
+  border-color: var(--primary);
 }
 
 #contact-form button {
   margin-top: 30px;
-  background: rgba(100, 255, 218, 0.1); /* Subtle background for tags */
-  color: #64ffda;
+  background: var(--cards-text-background); /* Subtle background for tags */
+  color: var(--primary);
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1rem;
@@ -92,7 +92,7 @@
 }
 
 #contact-form button:hover {
-  background: rgba(100, 255, 218, 0.2);
+  background: var(--cards-text-background-hover);
 }
 
 
@@ -105,7 +105,7 @@
   }
   #contact {
     padding: var(--spacing-medium);
-    color: #ccd6f6;
+    color: var(--text-main);
     box-shadow: var(--shadow-box); /* Subtle shadow */
   
   }
@@ -118,7 +118,7 @@
   font-size: 1.2rem; /* Adjust size to match the text-xs class */
   text-transform: uppercase; /* Apply uppercase styling */
   letter-spacing: 0.1em; /* Matches tracking-widest */
-  color: #94a3b8; /* Tailwind's text-slate-500 color */
+  color: var(--nav-text-color); /* Tailwind's text-slate-500 color */
   text-align: center;
   margin: 20px 0;
   position: relative;
@@ -132,13 +132,13 @@
   left: 50%; /* Start at the center */
   width: 0; /* Start with 0 width */
   height: 3px; /* Thickness of the underline */
-  background-color: #64ffda;
+  background-color: var(--primary);
   transform: translateX(-50%); /* Center align the underline */
   transition: width 0.6s ease; /* Smooth underline growth */
 }
 
 .mobile-section-heading.active {
-  color: #64ffda; /* Change text color when active */
+  color: var(--primary); /* Change text color when active */
   transition: width 0.6s ease;
 }
 

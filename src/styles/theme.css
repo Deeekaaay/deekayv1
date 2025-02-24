@@ -1,24 +1,32 @@
+
 :root {
-    /* Colors */
     --background: #000b1b;
+    --background-hover:#0d1a2d;
     --primary: #64ffda;
     --text-main: #ccd6f6;
     --text-muted: #8892b0;
     --shadow-box:0 8px 24px rgba(0, 0, 0, 0.1);
+    --cards-border:1px solid #233554;
+    --cards-text-background: rgba(100, 255, 218, 0.1);
+    --cards-text-background-hover:rgba(100, 255, 218, 0.2);
+    --nav-text-color:#94a3b8;
+    --nav-text-color-hover:#e2e8f0;
+    --cards-text-hover: #2dc799;
   
-    /* Typography */
     --font-family: 'Inter', sans-serif;
     --font-size-heading: 3rem;
     --font-size-subheading: 1.3rem;
     --font-size-body: 1.03rem;
   
-    /* Spacing */
     --spacing-small: 8px;
     --spacing-medium: 16px;
     --spacing-large: 32px;
     --card-padding: 20px;
     --card-margin: 20px 0px;
     --section-margin: 0px 0px 100px 0px;
+
+    --input-box-background: #112240;
+    --input-box-border: 1px solid #64ffdb86;
 
 
   }
@@ -69,9 +77,5 @@
     padding: var(--spacing-small) var(--spacing-medium);
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #52e0c4;
   }
   
