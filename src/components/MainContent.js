@@ -216,6 +216,23 @@ const MainContent = ({ onSectionChange }) => {
   ];
   const certificationData = [
     {
+      title: "Linux Fundamentals",
+      description:
+        "Completed the 'Linux Fundamentals' course by LearnQuest on Coursera. Explored core Linux concepts including file system navigation, process management, user permissions, basic shell scripting, and essential command-line tools used in real-world system administration.",
+      tags: [
+        "Linux",
+        "Command Line",
+        "Bash",
+        "Shell Scripting",
+        "Permissions",
+        "System Administration",
+        "Coursera",
+        "LearnQuest",
+      ],
+      image: "assets/images/Learnquests.png",
+      link: "https://www.coursera.org/account/accomplishments/verify/FO9E8B076911",
+    },
+    {
       title: "Innovation for Global Cities",
       description:
         "This credential earner demonstrates the ability to identify innovation strategies, apply them to global issues, and navigate complex environments with diverse stakeholders and competing demands.",
@@ -267,49 +284,55 @@ const MainContent = ({ onSectionChange }) => {
         </h2>
         <div className="about-intro">
           <p>
-            From curious beginnings to innovative solutions, my journey as a
-            Full-Stack Developer has been a tapestry of challenges and
-            discoveries.
+            From curious beginnings to innovative tech solutions, my journey as
+            a Full-Stack Software Engineer in Australia has been shaped by a
+            passion for solving real-world problems through scalable and modern
+            web technologies.
           </p>
         </div>
 
         <div className="about-content">
           <article>
             <p>
-              It all started with a{" "}
-              <strong>Bachelor's in Electronics & Communication</strong>, where
-              I was captivated by the intricacies of technology. This academic
-              foundation ignited a passion to bridge hardware and software,
-              leading me to the dynamic world of software development.
+              It all began with a{" "}
+              <strong>
+                Bachelor’s in Electronics & Communication Engineering
+              </strong>
+              , where I developed a strong foundation in computing and systems
+              thinking. This ignited my interest in bridging the gap between
+              hardware and software, eventually guiding me into the dynamic
+              world of full-stack development.
             </p>
             <p>
-              Embracing the ever-evolving tech landscape, I immersed myself in{" "}
-              <strong>React.js</strong>,<strong> Node.js</strong>,
-              <strong> GoLang</strong> and <strong>Python</strong>, crafting
-              responsive and efficient web applications. One standout project
-              was an assessment application that{" "}
-              <strong>boosted evaluation accuracy by 25%</strong>, underscoring
-              my commitment to delivering impactful solutions.
+              Over the years, I’ve built and deployed high-performance
+              applications using <strong>React.js</strong>,{" "}
+              <strong>Node.js</strong>, <strong>GoLang</strong>, and{" "}
+              <strong>Python</strong>. One of my proudest achievements was
+              leading the development of an assessment platform that{" "}
+              <strong>increased evaluation accuracy by 25%</strong>, showcasing
+              my ability to deliver real business impact.
             </p>
           </article>
 
           <article>
             <p>
-              Currently, I'm pursuing a{" "}
-              <strong>Master's in Information Technology</strong> at RMIT
-              University, focusing on <strong>Full-Stack Development</strong>,{" "}
+              I’m currently advancing my skills through a{" "}
+              <strong>Master’s in Information Technology</strong> at{" "}
+              <strong>RMIT University (Melbourne)</strong>, specialising in{" "}
+              <strong>Full-Stack Development</strong>,{" "}
               <strong>Data Visualization</strong>, and{" "}
-              <strong>Cloud Computing</strong>. This academic endeavor keeps me
-              at the forefront of emerging technologies, ensuring I stay ahead
-              in this fast-paced industry.
+              <strong>Cloud Computing</strong>. This academic journey helps me
+              stay current with emerging technologies in Australia’s growing
+              tech ecosystem.
             </p>
             <p>
-              Beyond coding, I thrive on <strong>collaboration</strong> and{" "}
-              <strong>continuous learning</strong>. I believe that the fusion of
-              diverse ideas leads to groundbreaking solutions. Whether it's
-              brainstorming with a team or diving into the latest tech trends,
-              I'm always eager to expand my horizons and contribute meaningfully
-              to the tech community.
+              Outside of writing code, I’m deeply passionate about{" "}
+              <strong>collaboration</strong>, <strong>DevOps culture</strong>,
+              and <strong>continuous learning</strong>. I believe in building
+              products that are user-centric, secure, and maintainable. Whether
+              it’s working within cross-functional teams or contributing to
+              innovative side projects, I aim to grow as a tech professional and
+              make a meaningful contribution to Australia’s digital future.
             </p>
           </article>
         </div>
