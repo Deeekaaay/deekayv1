@@ -4,7 +4,7 @@ import "../styles/Sidebar.css";
 
 const Sidebar = ({ activeSection }) => {
   return (
-    <aside className="sidebar flex flex-col p-large">
+    <aside className="sidebar p-large">
       <section id="about-section">
         <h1>Dineshkumar Suresh</h1>
         <h3 className="text-main">

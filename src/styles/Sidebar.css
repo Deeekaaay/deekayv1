@@ -4,7 +4,9 @@
   top: 0;
   width: 850px;
   height: 90vh;
+  display: flex;
   color: var(--text-main);
+  flex-direction: column;
   /* Use utility classes for flex and padding */
 }
 
