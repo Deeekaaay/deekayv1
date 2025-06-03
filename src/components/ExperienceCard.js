@@ -1,6 +1,7 @@
 // src/components/ExperienceCard.js
 import React, { useState } from "react";
 import "../styles/ExperienceCard.css";
+import TagList from "./TagList";
 
 const ExperienceCard = ({
   yearRange,
@@ -23,24 +24,19 @@ const ExperienceCard = ({
         <p>{yearRange}</p>
         <h3>
           {title} ·{" "}
-          <a href={link ?? "#"} target="_blank">
+          <a href={link ?? "#"} target="_blank" rel="noopener noreferrer">
             {company} <span>&#8599;</span>
           </a>
         </h3>
       </div>
       <div className="experience-body" onClick={toggleExpand}>
         <p>{description}</p>
-        <ul className="experience-tags">
-          {tags.map((tag, index) => (
-            <li key={index}>{tag}</li>
-          ))}
-        </ul>
-        {isExpanded && (
+        <TagList tags={tags} />
+        {isExpanded && details && (
           <div className="experience-details">
             <ul>
-              {details.map((detail, index) => (
-                <li key={index}>
-                  {" "}
+              {details.map((detail, idx) => (
+                <li key={idx}>
                   <span>&#187;</span> {detail}
                 </li>
               ))}

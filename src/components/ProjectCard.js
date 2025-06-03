@@ -1,6 +1,6 @@
 // src/components/ProjectCard.js
-import React from "react";
 import "../styles/ProjectCard.css";
+import TagList from "./TagList";
 
 const ProjectCard = ({ title, description, tags, image, link, rating }) => {
   return (
@@ -24,13 +24,7 @@ const ProjectCard = ({ title, description, tags, image, link, rating }) => {
             <span>★ {rating}</span>
           </div>
         )}
-        {tags && (
-          <ul className="project-tags">
-            {tags.map((tag, index) => (
-              <li key={index}>{tag}</li>
-            ))}
-          </ul>
-        )}
+        <TagList tags={tags} />
       </div>
     </div>
   );

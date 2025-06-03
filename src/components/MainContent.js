@@ -4,9 +4,15 @@ import "../styles/MainContent.css";
 import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
 import emailjs from "@emailjs/browser";
+import Papa from "papaparse";
+import Section from "./Section";
 
 const MainContent = ({ onSectionChange }) => {
   const [activeSection, setActiveSection] = useState("about");
+  const [experienceData, setExperienceData] = useState([]);
+  const [certificationData, setCertificationData] = useState([]);
+  const [projectData, setProjectData] = useState([]);
+
   useEffect(() => {
     const handleSectionChange = (entries) => {
       entries.forEach((entry) => {
@@ -32,6 +38,71 @@ const MainContent = ({ onSectionChange }) => {
       sections.forEach((section) => observer.unobserve(section));
     };
   }, [onSectionChange]);
+
+  useEffect(() => {
+    const csvUrl =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRdCHB-aGuhU0G6641f5IvhB4lKtKZnY9-wqtiVdNGo1fzB7SYeA7_1WoZtRRG2Z3CiPsYf55n_CQ1A/pub?output=csv";
+    Papa.parse(csvUrl, {
+      download: true,
+      header: true,
+      complete: (results) => {
+        setCertificationData(
+          results.data
+            .filter((row) => row.title)
+            .map((row) => {
+              let image = row.image;
+              return {
+                ...row,
+                image,
+                tags: row.tags ? row.tags.split(/,\s*/) : [],
+              };
+            })
+        );
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    // Fetch Experience and Project Data from Google Sheets CSV
+    const csvUrl =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRdCHB-aGuhU0G6641f5IvhB4lKtKZnY9-wqtiVdNGo1fzB7SYeA7_1WoZtRRG2Z3CiPsYf55n_CQ1A/pub?gid=485602198&single=true&output=csv";
+    Papa.parse(csvUrl, {
+      download: true,
+      header: true,
+      complete: (results) => {
+        // Experience Data
+        setExperienceData(
+          results.data
+            .filter((row) => row.Type === "Experience" && row.Title)
+            .map((row) => ({
+              yearRange: row["Year Range"],
+              title: row["Title"],
+              company: row["Organization"],
+              link: row["Link"],
+              location: row["Location"],
+              description: row["Description"],
+              tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
+              details: row["Details"] ? row["Details"].split(" | ") : [],
+            }))
+        );
+        // Project Data
+        setProjectData(
+          results.data
+            .filter((row) => row.Type === "Project" && row.Title)
+            .map((row) => {
+              let image = row["Image"];
+              return {
+                title: row["Title"],
+                description: row["Description"],
+                tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
+                image,
+                link: row["Link"],
+              };
+            })
+        );
+      },
+    });
+  }, []);
 
   async function sendMail(e) {
     e.preventDefault(); // Prevent the default form submission
@@ -85,203 +156,15 @@ const MainContent = ({ onSectionChange }) => {
       alert("Failed to send your message. Please try again.");
     }
   }
-  const experienceData = [
-    {
-      yearRange: "Nov 2024 – Present",
-      title: "Software Engineer | Internship",
-      company: "AquaTerra",
-      link: "https://aqua-terra.com.au/",
-      location: "Carlton, Victoria, Australia",
-      description:
-        "Leading the restructuring of AquaTerra's IoT application with AWS, React.js, and Node.js. Delivering scalable, secure solutions while enhancing real-time analytics and user engagement for sustainable agriculture.",
-      tags: [
-        "AWS",
-        "React.js",
-        "Node.js",
-        "AWSIoT",
-        "Postgresql",
-        "Dashboards",
-        "Real-Time Alerts",
-      ],
-      details: [
-        "Redesigned the application architecture to improve performance, scalability, and maintainability.",
-        "Developed real-time alerts, customizable dashboards, and advanced analytics to enhance user engagement.",
-        "Integrated secure IoT protocols for seamless device communication.",
-        "Collaborated with engineers, data scientists, and product managers to align technical solutions with business objectives.",
-        "Deployed encryption and authentication protocols to safeguard sensitive data.",
-        "Enabled actionable insights that empowered farmers to adopt sustainable practices.",
-      ],
-    },
-    {
-      yearRange: "Aug 2023 – Feb 2024",
-      title: "Software Engineer | Backend Specialist",
-      company: "Avasoft",
-      link: "http://www.avasoft.com",
-      location: "Chennai, Tamil Nadu, India",
-      description:
-        "Spearheaded the development of a cutting-edge assessment platform using TypeScript, GoLang, and MSSQL. Improved accuracy and efficiency with robust APIs and agile processes.",
-      tags: [
-        "TypeScript",
-        "GoLang",
-        "MSSQL",
-        "MongoDB",
-        "Okta",
-        "Azure",
-        "SonarCloud",
-      ],
-      details: [
-        "Achieved a 25% improvement in assessment accuracy with actionable insights from analytics.",
-        "Integrated APIs like Okta, Azure, and SonarCloud for seamless functionality.",
-        "Enhanced backend performance through rigorous code reviews and modular architecture.",
-        "Collaborated with cross-functional teams to align technical solutions with business goals.",
-        "Adhered to Agile methodologies and the 4D process (Define, Design, Develop, Deploy) to ensure timely delivery.",
-        "Documented pseudocode mapped to implementation for improved code clarity and maintainability.",
-      ],
-    },
-    {
-      yearRange: "Dec 2022 – Aug 2023",
-      title: "Software Engineer",
-      company: "Avasoft",
-      link: "http://www.avasoft.com",
-      location: "Chennai, Tamil Nadu, India",
-      description:
-        "Engineered a scalable logistics platform using PHP Symfony, Go, and jQuery, delivering new features and improving operational efficiency for global supply chains.",
-      tags: ["PHP Symfony", "GoLang", "jQuery", "HTML.Twig", "Unit Testing"],
-      details: [
-        "Designed and implemented new modular services to meet client requirements.",
-        "Improved system scalability and maintainability by integrating complex systems into streamlined architecture.",
-        "Collaborated with cross-functional teams to align technical deliverables with business goals.",
-        "Conducted rigorous unit testing to ensure reliability and functionality.",
-        "Enhanced client engagement through personalized, scalable solutions.",
-      ],
-    },
-    {
-      yearRange: "Aug 2022 – Dec 2022",
-      title: "Software Engineer Intern",
-      company: "Avasoft",
-      link: "http://www.avasoft.com",
-      location: "Chennai, Tamil Nadu, India",
-      description:
-        "Contributed to full-stack development with React.js, Node.js, and MySQL. Played a critical role in feature development and testing under senior guidance.",
-      tags: ["React.js", "Node.js", "MySQL"],
-      details: [
-        "Developed and tested front-end and back-end features for a web application.",
-        "Collaborated with senior developers during team meetings, code reviews, and brainstorming sessions.",
-        "Assisted in debugging and unit testing to ensure code quality.",
-        "Learned best practices in full-stack development, earning a full-time Software Engineer position.",
-      ],
-    },
-    {
-      yearRange: "Jan 2022 – Apr 2022",
-      title: "Web App Developer | Volunteer",
-      company: "SAEC | S.A. Engineering College",
-      location: "Chennai, Tamil Nadu, India",
-      link: "https://www.saec.ac.in/",
-      description:
-        "Developed a responsive invitation website for EMTEEC 2022, enabling seamless participant registration and effective information dissemination.",
-      tags: ["HTML5", "CSS3", "JavaScript", "Netlify"],
-      details: [
-        "Created intuitive navigation menus for effortless user interaction.",
-        "Designed and implemented responsive layouts for cross-device compatibility.",
-        "Collaborated with organizers to ensure branding and design objectives were met.",
-        "Successfully facilitated participant registrations and boosted event outreach.",
-      ],
-    },
-  ];
-  const projectData = [
-    {
-      title: "Facial Recognition and Detection Scripts",
-      description:
-        "Developed a suite of Python scripts focusing on facial recognition, detection, and eye detection. These tools facilitate image processing tasks such as cropping faces from datasets, real-time face detection, and resizing images for analysis.",
-      tags: ["Python", "OpenCV", "Image Processing", "Computer Vision"],
-      image: "assets/images/facereco.png",
-      link: "https://github.com/Deeekaaay/python",
-    },
-    {
-      title: "EMTEEC 2022 Invitation Website",
-      description:
-        "Created a responsive invitation website for EMTEEC 2022 using HTML5, CSS3, and JavaScript. Delivered user-friendly navigation, device compatibility, and efficient registration, collaborating with organizers to ensure seamless information sharing.",
-      tags: ["HTML5", "CSS3", "JavaScript", "Netlify"],
-      image: "assets/images/emteec.png",
-      link: "https://emteecwhite.netlify.app/",
-    },
-    {
-      title: "Personal Portfolio Website",
-      description:
-        "Designed and developed an interactive and responsive portfolio website using React.js and CSS. Showcases projects, skills, and experience with a modern design, dynamic animations, and user-friendly navigation. Includes an automated contact form powered by EmailJS.",
-      tags: ["React.js", "CSS", "EmailJS", "Responsive Design"],
-      image: "assets/images/portfolio.png",
-      link: "https://deeekaaay.github.io/deekayv1/", // Replace with your live portfolio URL
-    },
-  ];
-  const certificationData = [
-    {
-      title: "Linux Fundamentals",
-      description:
-        "Completed the 'Linux Fundamentals' course by LearnQuest on Coursera. Explored core Linux concepts including file system navigation, process management, user permissions, basic shell scripting, and essential command-line tools used in real-world system administration.",
-      tags: [
-        "Linux",
-        "Command Line",
-        "Bash",
-        "Shell Scripting",
-        "Permissions",
-        "System Administration",
-        "Coursera",
-        "LearnQuest",
-      ],
-      image: "assets/images/Learnquests.png",
-      link: "https://www.coursera.org/account/accomplishments/verify/FO9E8B076911",
-    },
-    {
-      title: "Innovation for Global Cities",
-      description:
-        "This credential earner demonstrates the ability to identify innovation strategies, apply them to global issues, and navigate complex environments with diverse stakeholders and competing demands.",
-      tags: [
-        "Decision Making",
-        "Presentation Skills",
-        "Problem Solving",
-        "Research And Analysis",
-        "Teamwork",
-      ],
-      image: "assets/images/innovation-for-global-cities.2.png",
-      link: "https://www.credly.com/badges/837c9dbf-fa77-4fe4-bd62-8e41dadd3d4e/public_url",
-    },
-    {
-      title: "Womin Djeka Indigenous Orientation",
-      description:
-        "Earners of Womin Djeka Indigenous Orientation demonstrate awareness of Aboriginal and Torres Strait Islander cultures, commit to Dhumbah Goorowa, and value First Nations' self-determination as custodians of this land.",
-      tags: [
-        "Cultural And Civic Awareness",
-        "Indigenous Awareness And understAnding",
-        "Reflecting",
-      ],
-      image: "assets/images/womin-djeka-indigenous-orientation.png",
-      link: "https://www.credly.com/badges/45217a8f-a0fc-4e5e-a803-31f742849372/public_url",
-    },
-    {
-      title: "ChatGPT for Project Managers: 10x Your Productivity with AI",
-      description:
-        "Learn how to streamline project management with ChatGPT. Jean Kang shares tips on planning, risk management, tailored communication, and tracking progress to enhance efficiency and make data-driven decisions.",
-      tags: [
-        "Project Management",
-        "Artificial Intelligence for Business",
-        "ChatGPT",
-        "Prompt Engineering",
-      ],
-      image: "assets/images/linkedin_logo.jpg",
-      link: "https://www.linkedin.com/learning/certificates/80928a5eee66b99e7ee781f2bb5bd9da54dc8d076d5859fe7485cb04912d0cb7",
-    },
-  ];
+
   return (
     <main className="content">
-      <section id="about" className="about-section">
-        <h2
-          className={`mobile-section-heading ${
-            activeSection === "about" ? "active" : ""
-          }`}
-        >
-          Hello World!
-        </h2>
+      <Section
+        id="about"
+        title="Hello World!"
+        className="about-section"
+        activeSection={activeSection}
+      >
         <div className="about-intro">
           <p>
             From curious beginnings to innovative tech solutions, my journey as
@@ -290,7 +173,6 @@ const MainContent = ({ onSectionChange }) => {
             web technologies.
           </p>
         </div>
-
         <div className="about-content">
           <article>
             <p>
@@ -306,9 +188,10 @@ const MainContent = ({ onSectionChange }) => {
             <p>
               Over the years, I’ve built and deployed high-performance
               applications using <strong>React.js</strong>,{" "}
-              <strong>Node.js</strong>, <strong>GoLang</strong>, and{" "}
-              <strong>Python</strong>. One of my proudest achievements was
-              leading the development of an assessment platform that{" "}
+              <strong>Typescript</strong>, <strong>Node.js</strong>,{" "}
+              <strong>GoLang</strong>, and <strong>Python</strong>. One of my
+              proudest achievements was leading the development of an assessment
+              platform that{" "}
               <strong>increased evaluation accuracy by 25%</strong>, showcasing
               my ability to deliver real business impact.
             </p>
@@ -319,11 +202,10 @@ const MainContent = ({ onSectionChange }) => {
               I’m currently advancing my skills through a{" "}
               <strong>Master’s in Information Technology</strong> at{" "}
               <strong>RMIT University (Melbourne)</strong>, specialising in{" "}
-              <strong>Full-Stack Development</strong>,{" "}
-              <strong>Data Visualization</strong>, and{" "}
-              <strong>Cloud Computing</strong>. This academic journey helps me
-              stay current with emerging technologies in Australia’s growing
-              tech ecosystem.
+              <strong>Full-Stack Software Development</strong>,{" "}
+              <strong>Data Visualization</strong>, and <strong>DevOps</strong>.
+              This academic journey helps me stay current with emerging
+              technologies in Australia’s growing tech ecosystem.
             </p>
             <p>
               Outside of writing code, I’m deeply passionate about{" "}
@@ -336,46 +218,27 @@ const MainContent = ({ onSectionChange }) => {
             </p>
           </article>
         </div>
-      </section>
-
-      <section id="experience">
-        <h2
-          className={`mobile-section-heading ${
-            activeSection === "experience" ? "active" : ""
-          }`}
-        >
-          Experience
-        </h2>
+      </Section>
+      <Section id="experience" title="Experience" activeSection={activeSection}>
         {experienceData.map((experience, index) => (
           <ExperienceCard key={index} {...experience} />
         ))}
-      </section>
-
-      <section id="projects">
-        <h2
-          className={`mobile-section-heading ${
-            activeSection === "projects" ? "active" : ""
-          }`}
-        >
-          Projects
-        </h2>
+      </Section>
+      <Section id="projects" title="Projects" activeSection={activeSection}>
         {projectData.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
-      </section>
-      <section id="certifications">
-        <h2
-          className={`mobile-section-heading ${
-            activeSection === "certifications" ? "active" : ""
-          }`}
-        >
-          Certifications
-        </h2>
+      </Section>
+      <Section
+        id="certifications"
+        title="Certifications"
+        activeSection={activeSection}
+      >
         {certificationData.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
-      </section>
-      <section id="contact">
+      </Section>
+      <Section id="contact" title="Contact" activeSection={activeSection}>
         <p>
           💡 "Got a genius project idea? Or just want to chat about life, code,
           or your favorite anime? 🎥✨ Drop me a message below, and I promise to
@@ -389,7 +252,6 @@ const MainContent = ({ onSectionChange }) => {
             placeholder="Your Name"
             required
           />
-
           <input
             type="email"
             id="email"
@@ -397,7 +259,6 @@ const MainContent = ({ onSectionChange }) => {
             placeholder="Your Email"
             required
           />
-
           <textarea
             id="message"
             name="message"
@@ -405,12 +266,11 @@ const MainContent = ({ onSectionChange }) => {
             placeholder="Your Message"
             required
           ></textarea>
-
           <button type="button" onClick={sendMail}>
             Send
           </button>
         </form>
-      </section>
+      </Section>
     </main>
   );
 };
