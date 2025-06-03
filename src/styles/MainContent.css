@@ -142,7 +142,7 @@
   width: 100%; /* Full width when active */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 851px) {
   .mobile-section-heading {
     display: none; /* Hide on larger screens */
   }
