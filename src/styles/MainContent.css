@@ -42,6 +42,7 @@
 }
 
 #contact {
+  text-align: justify;
   padding: 10px 50px;
   color: var(--text-main);
   box-shadow: var(--shadow-box); /* Subtle shadow */

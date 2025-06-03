@@ -244,10 +244,7 @@ const MainContent = ({ onSectionChange }) => {
           or your favorite anime? 🎥✨ Drop me a message below, and I promise to
           respond faster than Goku can go Super Saiyan! 🚀
         </p>
-        <form
-          id="contact-form"
-          className="flex flex-col gap-2 p-medium bg-background rounded shadow"
-        >
+        <form id="contact-form" className="flex flex-col gap-2 p-medium">
           <input
             type="text"
             id="name"

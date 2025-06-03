@@ -77,6 +77,19 @@
   color: var(--primary);
 }
 
+.social-icon-theme {
+  color: #14b28d80;
+  font-size: 1.8rem;
+  margin-right: 0;
+  transition: color 0.3s, opacity 0.3s;
+  text-shadow: var(--social-icon-shadow); /* Use theme variable for shadow */
+}
+
+.social-icon-theme:hover {
+  color: #14b28df5;
+
+}
+
 @media (max-width: 850px) {
   .sidebar {
     width: fit-content; /* Use full width for smaller screens */

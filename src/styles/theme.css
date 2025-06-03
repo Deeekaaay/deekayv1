@@ -26,8 +26,10 @@
 
     --input-box-background: #112240;
     --input-box-border: 1px solid #64ffdb86;
+    --social-icon-shadow: 0 2px 8px #14b28d99, 0 1px 2px #0006;
 
 
+    
   }
   
   body {
@@ -130,4 +132,29 @@
 }
 .m-large {
   margin: var(--spacing-large);
+}
+
+/* Light theme using Corporate Calm palette */
+.light-theme {
+  --background: #f3f4f6;
+  --background-hover: #e5e7eb;
+  --primary: #3fc6b6; /* Muted Aqua */
+  --primary-hover: #2fa393; /* Slightly deeper for button hover */
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --shadow-box: 0 8px 32px rgba(63, 198, 182, 0.10); /* More depth for form/card separation */
+  --cards-border: 1px solid #d1d5db;
+  --cards-text-background: rgba(63, 198, 182, 0.08); /* Softer, subtle accent */
+  --cards-text-background-hover: rgba(63, 198, 182, 0.16); /* Slightly stronger for hover */
+  --nav-text-color: #475569;
+  --nav-text-color-hover: #3eb6a3; /* Teal Tint for nav hover, matches palette */
+  --cards-text-hover: #3eb6a3; /* Teal Tint for card text hover */
+  --input-box-background: #ffffff;
+  --social-icon-shadow: 0 2px 8px #14b28d40, 0 1px 2px rgba(254, 253, 253, 0.13);
+
+  --input-box-border: 1px solid #cbd5e1;
+}
+
+body.light-theme, .light-theme .app, .light-theme .sidebar, .light-theme .content, .light-theme .project-card, .light-theme .experience-card, .light-theme .nav-links, .light-theme .social-icons, .light-theme button, .light-theme input, .light-theme textarea {
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
 }

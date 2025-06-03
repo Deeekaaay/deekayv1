@@ -7,6 +7,15 @@ import "./styles/theme.css";
 
 function App() {
   const [activeSection, setActiveSection] = useState("about");
+  const [theme, setTheme] = useState(() => {
+    // Check localStorage or default to dark
+    return localStorage.getItem("theme") || "dark";
+  });
+
+  useEffect(() => {
+    document.body.classList.toggle("light-theme", theme === "light");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // Track visitor source and send Telegram notification (optional)
   useEffect(() => {
@@ -54,6 +63,23 @@ function App() {
 
   return (
     <div className="app">
+      <a
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        style={{
+          position: "fixed",
+          top: 20,
+          right: 20,
+          zIndex: 10000,
+          padding: "8px 16px",
+          borderRadius: 6,
+          border: "none",
+          background: "none",
+          cursor: "pointer",
+        }}
+        aria-label="Switch theme"
+      >
+        <i className="fi fi-rr-night-day social-icon-theme" />
+      </a>
       <div className="custom-cursor" />
       <Sidebar activeSection={activeSection} />
       <MainContent onSectionChange={setActiveSection} />
