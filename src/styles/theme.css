@@ -156,5 +156,5 @@
 }
 
 body.light-theme, .light-theme .app, .light-theme .sidebar, .light-theme .content, .light-theme .project-card, .light-theme .experience-card, .light-theme .nav-links, .light-theme .social-icons, .light-theme button, .light-theme input, .light-theme textarea {
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  transition: background 0.3s, color 0.2s, border-color 0.3s;
 }
