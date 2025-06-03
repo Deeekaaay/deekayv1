@@ -9,10 +9,9 @@ const Sidebar = ({ activeSection }) => {
         <h1>Dineshkumar Suresh</h1>
         <h3>Innovative Software Engineer | AI Enthusiast</h3>
         <p>
-          Aspiring Software Engineer | RMIT Student | Proficient in React.js,
-          Node.js, Python, and GoLang | Exploring AWS, IoT, and AI | Agile
-          Enthusiast | Building Scalable and Impactful
-          Solutions
+          Software Engineer | React.js, Node.js & GoLang | Agile & DevOps
+          Enthusiast | RMIT Master's Student | Open to Internships & Part-Time
+          Roles in Melbourne
         </p>
       </section>
       <nav className="nav-links">
