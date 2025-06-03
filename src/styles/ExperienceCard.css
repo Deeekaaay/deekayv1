@@ -1,21 +1,17 @@
 /* src/styles/ExperienceCard.css */
-.experience-card {
-  padding: var(--card-padding);
-  margin: var(--card-margin);
-
-}
+/* Use utility classes: p-large, m-large, shadow, rounded for .experience-card in markup */
 
 .experience-card:hover {
-  transform: translateY(-10px); /* Moves up on hover */
-  background-color: var(--background-hover); /* Initial dark background */
+  transform: translateY(-10px);
+  background-color: var(--background-hover);
   border-radius: 10px;
-  box-shadow: var(--shadow-box); /* Subtle shadow */
+  box-shadow: var(--shadow-box);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .experience-header p {
   font-size: 0.9rem;
-  color: var(--text-muted); /* Muted text color */
+  color: var(--text-muted);
   margin: 0 0 10px 0;
 }
 
@@ -25,19 +21,19 @@
 }
 
 .experience-header h3 span {
-  color: var(--primary); /* Highlight for the company */
+  color: var(--primary);
 }
 
 .experience-header h3 a {
   cursor: pointer;
-  color: var(--primary); /* Link color */
+  color: var(--primary);
   text-decoration: none;
   font-size: 1rem;
   margin-left: 5px;
 }
 
 .experience-header h3 a:hover {
-  color: var(--cards-text-hover) /* Slightly transparent hover color */
+  color: var(--cards-text-hover);
 }
 
 .experience-body p {
@@ -57,7 +53,7 @@
 }
 
 .experience-tags li {
-  background: var(--cards-text-background); /* Subtle background for tags */
+  background: var(--cards-text-background);
   color: var(--primary);
   padding: 5px 10px;
   border-radius: 5px;
@@ -67,7 +63,7 @@
 }
 
 .experience-tags li:hover {
-  background: var(--cards-text-background-hover); /* Brighter on hover */
+  background: var(--cards-text-background-hover);
 }
 
 .experience-details {
@@ -87,14 +83,19 @@
   margin-bottom: 10px;
 }
 
+.card-spacing {
+  margin: var(--card-margin);
+  padding: var(--card-padding);
+}
+
 @media (max-width: 850px) {
   .experience-card {
     padding: var(--spacing-medium);
     margin: var(--card-margin);
-    transform: translateY(-10px); /* Moves up on hover */
-    background-color: var(--background-hover); /* Initial dark background */
+    transform: translateY(-10px);
+    background-color: var(--background-hover);
     border-radius: 10px;
-    box-shadow: var(--shadow-box); /* Subtle shadow */
+    box-shadow: var(--shadow-box);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   
   }

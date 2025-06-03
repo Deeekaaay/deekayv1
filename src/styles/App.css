@@ -1,5 +1,5 @@
-
 .app {
+  /* Use utility classes: flex, m-large, center, min-h-screen (if defined) */
   display: flex;
   min-height: 100vh;
   justify-content: center;

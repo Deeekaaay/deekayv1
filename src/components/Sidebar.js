@@ -4,18 +4,20 @@ import "../styles/Sidebar.css";
 
 const Sidebar = ({ activeSection }) => {
   return (
-    <aside className="sidebar">
+    <aside className="sidebar flex flex-col p-large">
       <section id="about-section">
         <h1>Dineshkumar Suresh</h1>
-        <h3>Innovative Software Engineer | AI Enthusiast</h3>
-        <p>
+        <h3 className="text-main">
+          Innovative Software Engineer | AI Enthusiast
+        </h3>
+        <p className="text-muted">
           Software Engineer | React.js, Node.js & GoLang | Agile & DevOps
           Enthusiast | RMIT Master's Student | Open to Internships & Part-Time
           Roles in Melbourne
         </p>
       </section>
       <nav className="nav-links">
-        <ul>
+        <ul className="list-none p-0">
           <li>
             <a
               className={`group flex items-center py-3 ${
@@ -84,7 +86,7 @@ const Sidebar = ({ activeSection }) => {
         </ul>
       </nav>
 
-      <div className="social-icons">
+      <div className="social-icons flex">
         <a
           href="mailto:dineshdeekay.me@gmail.com"
           target="_blank"

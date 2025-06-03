@@ -1,4 +1,3 @@
-// src/components/ExperienceCard.js
 import React, { useState } from "react";
 import "../styles/ExperienceCard.css";
 import TagList from "./TagList";
@@ -19,22 +18,31 @@ const ExperienceCard = ({
   };
 
   return (
-    <div className={`experience-card ${isExpanded ? "expanded" : ""}`}>
+    <div
+      className={`experience-card rounded shadow card-spacing${
+        isExpanded ? " expanded" : ""
+      }`}
+    >
       <div className="experience-header">
-        <p>{yearRange}</p>
+        <p className="text-muted">{yearRange}</p>
         <h3>
           {title} ·{" "}
-          <a href={link ?? "#"} target="_blank" rel="noopener noreferrer">
+          <a
+            className="text-primary"
+            href={link ?? "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {company} <span>&#8599;</span>
           </a>
         </h3>
       </div>
       <div className="experience-body" onClick={toggleExpand}>
-        <p>{description}</p>
+        <p className="text-muted">{description}</p>
         <TagList tags={tags} />
         {isExpanded && details && (
           <div className="experience-details">
-            <ul>
+            <ul className="list-none p-0">
               {details.map((detail, idx) => (
                 <li key={idx}>
                   <span>&#187;</span> {detail}

@@ -5,20 +5,12 @@
   width: 850px;
   height: 90vh;
   color: var(--text-main);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: var(--spacing-large);
+  /* Use utility classes for flex and padding */
 }
 
 .sidebar h1{
   font-size: 40px;
   margin-bottom: var(--spacing-small);
-}
-
-.nav-links ul {
-  list-style: none;
-  padding: 0;
 }
 
 .nav-links ul li {
@@ -28,28 +20,29 @@
 .nav-links ul li a {
   display: flex;
   align-items: center;
-  padding: 10px 0; /* Spacing around the link */
+  padding: 10px 0;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .nav-links ul li a .nav-indicator {
   display: inline-block;
-  margin-right: 16px; /* Spacing between line and text */
+  margin-right: 16px;
   height: 2px;
-  width: 32px; /* Default width */
-  background-color: var(--text-muted); /* Muted slate color */
+  width: 32px;
+  background-color: var(--text-muted);
   transition: width 0.3s ease, background-color 0.3s ease;
 }
 
 .nav-links ul li a .nav-text {
-  font-size: 0.75rem; /* Matches the text-xs size */
+  font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.1em; /* Matches tracking-widest */
-  color: var(--nav-text-color); /* Muted slate text color */
-  transition: color 0.3s ease;
+  letter-spacing: 0.1em;
+  color: var(--nav-text-color);
 }
+
+/* Suggestion: In your JSX/HTML, add utility classes like 'flex', 'flex-col', 'p-large' to .sidebar, and 'list-none', 'p-0' to ul for reusability. */
 
 .nav-links ul li a:hover .nav-indicator,
 .nav-links ul li a:focus-visible .nav-indicator {

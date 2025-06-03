@@ -158,7 +158,7 @@ const MainContent = ({ onSectionChange }) => {
   }
 
   return (
-    <main className="content">
+    <main className="content text-main">
       <Section
         id="about"
         title="Hello World!"
@@ -239,18 +239,22 @@ const MainContent = ({ onSectionChange }) => {
         ))}
       </Section>
       <Section id="contact" title="Contact" activeSection={activeSection}>
-        <p>
+        <p className="text-muted">
           💡 "Got a genius project idea? Or just want to chat about life, code,
           or your favorite anime? 🎥✨ Drop me a message below, and I promise to
           respond faster than Goku can go Super Saiyan! 🚀
         </p>
-        <form id="contact-form">
+        <form
+          id="contact-form"
+          className="flex flex-col gap-2 p-medium bg-background rounded shadow"
+        >
           <input
             type="text"
             id="name"
             name="name"
             placeholder="Your Name"
             required
+            className="p-small m-small rounded"
           />
           <input
             type="email"
@@ -258,6 +262,7 @@ const MainContent = ({ onSectionChange }) => {
             name="email"
             placeholder="Your Email"
             required
+            className="p-small m-small rounded"
           />
           <textarea
             id="message"
@@ -265,8 +270,9 @@ const MainContent = ({ onSectionChange }) => {
             rows="5"
             placeholder="Your Message"
             required
+            className="p-small m-small rounded"
           ></textarea>
-          <button type="button" onClick={sendMail}>
+          <button type="button" onClick={sendMail} className="rounded">
             Send
           </button>
         </form>
