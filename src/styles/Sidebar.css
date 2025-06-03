@@ -1,11 +1,14 @@
 /* src/styles/Sidebar.css */
 .sidebar {
-  position: sticky;
-  top: 0;
-  width: 850px;
-  height: 90vh;
-  color: var(--text-main);
-  /* Use utility classes for flex and padding */
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: space-between;
+    padding: var(--spacing-large);
+    position: sticky;
+    top: 0;
+    width: 850px;
 }
 
 .sidebar h1{
