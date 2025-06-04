@@ -12,6 +12,12 @@ const MainContent = ({ onSectionChange }) => {
   const [experienceData, setExperienceData] = useState([]);
   const [certificationData, setCertificationData] = useState([]);
   const [projectData, setProjectData] = useState([]);
+  const [experienceLoading, setExperienceLoading] = useState(true);
+  const [experienceError, setExperienceError] = useState(null);
+  const [certificationLoading, setCertificationLoading] = useState(true);
+  const [certificationError, setCertificationError] = useState(null);
+  const [projectLoading, setProjectLoading] = useState(true);
+  const [projectError, setProjectError] = useState(null);
 
   useEffect(() => {
     const handleSectionChange = (entries) => {
@@ -42,64 +48,95 @@ const MainContent = ({ onSectionChange }) => {
   useEffect(() => {
     const csvUrl =
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vRdCHB-aGuhU0G6641f5IvhB4lKtKZnY9-wqtiVdNGo1fzB7SYeA7_1WoZtRRG2Z3CiPsYf55n_CQ1A/pub?output=csv";
+    setCertificationLoading(true);
+    setCertificationError(null);
     Papa.parse(csvUrl, {
       download: true,
       header: true,
       complete: (results) => {
-        setCertificationData(
-          results.data
-            .filter((row) => row.title)
-            .map((row) => {
-              let image = row.image;
-              return {
-                ...row,
-                image,
-                tags: row.tags ? row.tags.split(/,\s*/) : [],
-              };
-            })
-        );
+        try {
+          setCertificationData(
+            results.data
+              .filter((row) => row.title)
+              .map((row) => {
+                let image = row.image;
+                return {
+                  ...row,
+                  image,
+                  tags: row.tags ? row.tags.split(/,\s*/) : [],
+                };
+              })
+          );
+          setCertificationLoading(false);
+        } catch (err) {
+          setCertificationError("Failed to load certifications.");
+          setCertificationLoading(false);
+        }
+      },
+      error: (err) => {
+        setCertificationError("Failed to load certifications.");
+        setCertificationLoading(false);
       },
     });
   }, []);
 
   useEffect(() => {
-    // Fetch Experience and Project Data from Google Sheets CSV
     const csvUrl =
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vRdCHB-aGuhU0G6641f5IvhB4lKtKZnY9-wqtiVdNGo1fzB7SYeA7_1WoZtRRG2Z3CiPsYf55n_CQ1A/pub?gid=485602198&single=true&output=csv";
+    setExperienceLoading(true);
+    setExperienceError(null);
+    setProjectLoading(true);
+    setProjectError(null);
     Papa.parse(csvUrl, {
       download: true,
       header: true,
       complete: (results) => {
-        // Experience Data
-        setExperienceData(
-          results.data
-            .filter((row) => row.Type === "Experience" && row.Title)
-            .map((row) => ({
-              yearRange: row["Year Range"],
-              title: row["Title"],
-              company: row["Organization"],
-              link: row["Link"],
-              location: row["Location"],
-              description: row["Description"],
-              tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
-              details: row["Details"] ? row["Details"].split(" | ") : [],
-            }))
-        );
-        // Project Data
-        setProjectData(
-          results.data
-            .filter((row) => row.Type === "Project" && row.Title)
-            .map((row) => {
-              let image = row["Image"];
-              return {
+        try {
+          setExperienceData(
+            results.data
+              .filter((row) => row.Type === "Experience" && row.Title)
+              .map((row) => ({
+                yearRange: row["Year Range"],
                 title: row["Title"],
+                company: row["Organization"],
+                link: row["Link"],
+                location: row["Location"],
                 description: row["Description"],
                 tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
-                image,
-                link: row["Link"],
-              };
-            })
-        );
+                details: row["Details"] ? row["Details"].split(" | ") : [],
+              }))
+          );
+          setExperienceLoading(false);
+        } catch (err) {
+          setExperienceError("Failed to load experience data.");
+          setExperienceLoading(false);
+        }
+        try {
+          setProjectData(
+            results.data
+              .filter((row) => row.Type === "Project" && row.Title)
+              .map((row) => {
+                let image = row["Image"];
+                return {
+                  title: row["Title"],
+                  description: row["Description"],
+                  tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
+                  image,
+                  link: row["Link"],
+                };
+              })
+          );
+          setProjectLoading(false);
+        } catch (err) {
+          setProjectError("Failed to load project data.");
+          setProjectLoading(false);
+        }
+      },
+      error: (err) => {
+        setExperienceError("Failed to load experience/project data.");
+        setExperienceLoading(false);
+        setProjectError("Failed to load experience/project data.");
+        setProjectLoading(false);
       },
     });
   }, []);
@@ -220,23 +257,47 @@ const MainContent = ({ onSectionChange }) => {
         </div>
       </Section>
       <Section id="experience" title="Experience" activeSection={activeSection}>
-        {experienceData.map((experience, index) => (
-          <ExperienceCard key={index} {...experience} />
-        ))}
+        {experienceLoading ? (
+          <div className="loading">Loading experience...</div>
+        ) : experienceError ? (
+          <div className="error">{experienceError}</div>
+        ) : experienceData.length === 0 ? (
+          <div className="empty">No experience data found.</div>
+        ) : (
+          experienceData.map((experience, index) => (
+            <ExperienceCard key={index} {...experience} />
+          ))
+        )}
       </Section>
       <Section id="projects" title="Projects" activeSection={activeSection}>
-        {projectData.map((project, index) => (
-          <ProjectCard key={index} {...project} />
-        ))}
+        {projectLoading ? (
+          <div className="loading">Loading projects...</div>
+        ) : projectError ? (
+          <div className="error">{projectError}</div>
+        ) : projectData.length === 0 ? (
+          <div className="empty">No project data found.</div>
+        ) : (
+          projectData.map((project, index) => (
+            <ProjectCard key={index} {...project} />
+          ))
+        )}
       </Section>
       <Section
         id="certifications"
         title="Certifications"
         activeSection={activeSection}
       >
-        {certificationData.map((project, index) => (
-          <ProjectCard key={index} {...project} />
-        ))}
+        {certificationLoading ? (
+          <div className="loading">Loading certifications...</div>
+        ) : certificationError ? (
+          <div className="error">{certificationError}</div>
+        ) : certificationData.length === 0 ? (
+          <div className="empty">No certification data found.</div>
+        ) : (
+          certificationData.map((project, index) => (
+            <ProjectCard key={index} {...project} />
+          ))
+        )}
       </Section>
       <Section id="contact" title="Contact" activeSection={activeSection}>
         <p className="text-muted">
