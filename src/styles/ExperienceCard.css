@@ -1,6 +1,29 @@
 /* src/styles/ExperienceCard.css */
 /* Use utility classes: p-large, m-large, shadow, rounded for .experience-card in markup */
 
+.experience-card, .project-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.experience-card.animated, .project-card.animated {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInSection 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
 .experience-card:hover {
   transform: translateY(-10px);
   background-color: var(--background-hover);

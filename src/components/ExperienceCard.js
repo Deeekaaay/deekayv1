@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect } from "react";
 import "../styles/ExperienceCard.css";
 import TagList from "./TagList";
 
@@ -10,19 +10,33 @@ const ExperienceCard = ({
   tags,
   link,
   details,
+  index = 0,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const cardRef = useRef(null);
 
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.animationDelay = null;
+    card.style.transitionDelay = null;
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            card.classList.add("animated");
+          } else {
+            card.classList.remove("animated");
+          }
+        });
+      },
+      { threshold: 0.01, rootMargin: "0px 0px -20% 0px" }
+    );
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div
-      className={`experience-card rounded shadow card-spacing${
-        isExpanded ? " expanded" : ""
-      }`}
-    >
+    <div ref={cardRef} className="experience-card rounded shadow card-spacing">
       <div className="experience-header">
         <p className="text-muted">{yearRange}</p>
         <h3>
@@ -37,10 +51,10 @@ const ExperienceCard = ({
           </a>
         </h3>
       </div>
-      <div className="experience-body" onClick={toggleExpand}>
+      <div className="experience-body">
         <p className="text-muted">{description}</p>
         <TagList tags={tags} />
-        {isExpanded && details && (
+        {details && (
           <div className="experience-details">
             <ul className="list-none p-0">
               {details.map((detail, idx) => (

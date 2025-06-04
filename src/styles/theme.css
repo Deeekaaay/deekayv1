@@ -21,7 +21,7 @@
     --spacing-medium: 16px;
     --spacing-large: 32px;
     --card-padding: 20px;
-    --card-margin: 20px 0px;
+    --card-margin: 120px 0px;
     --section-margin: 0px 0px 100px 0px;
 
     --input-box-background: #112240;
@@ -157,4 +157,70 @@
 
 body.light-theme, .light-theme .app, .light-theme .sidebar, .light-theme .content, .light-theme .project-card, .light-theme .experience-card, .light-theme .nav-links, .light-theme .social-icons, .light-theme button, .light-theme input, .light-theme textarea {
   transition: background 0.3s, color 0.2s, border-color 0.3s;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --card-margin: 32px 0px;
+    --card-padding: 12px;
+    --font-size-heading: 2rem;
+    --font-size-subheading: 1.05rem;
+    --font-size-body: 0.97rem;
+  }
+  .experience-card, .project-card {
+    width: 98vw;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .experience-header h3, .project-header h3 {
+    font-size: 1rem;
+  }
+  .experience-body p, .project-content p {
+    font-size: 0.97rem;
+    margin: 8px 0;
+  }
+  .experience-tags, .project-tags {
+    gap: 6px;
+  }
+  .experience-tags li, .project-tags li {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+  .experience-card:hover, .project-card:hover {
+    /* Disable hover lift on mobile */
+    transform: none;
+    background-color: var(--background-hover);
+    box-shadow: var(--shadow-box);
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  :root {
+    --card-margin: 32px 0px;
+    --card-padding: 16px;
+    --font-size-heading: 2.4rem;
+    --font-size-subheading: 1.15rem;
+    --font-size-body: 1.01rem;
+  }
+  .experience-card, .project-card {
+    width: 95vw;
+    max-width: 98vw;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .experience-header h3, .project-header h3 {
+    font-size: 1.1rem;
+  }
+  .experience-body p, .project-content p {
+    font-size: 1.01rem;
+    margin: 10px 0;
+  }
+  .experience-tags, .project-tags {
+    gap: 8px;
+  }
+  .experience-tags li, .project-tags li {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
 }

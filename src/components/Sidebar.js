@@ -3,6 +3,26 @@ import React from "react";
 import "../styles/Sidebar.css";
 
 const Sidebar = ({ activeSection }) => {
+  // Smooth scroll for nav links
+  React.useEffect(() => {
+    const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href").replace("#", "");
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+    return () => {
+      navLinks.forEach((link) => {
+        link.removeEventListener("click", () => {});
+      });
+    };
+  }, []);
+
   return (
     <aside className="sidebar p-large">
       <section id="about-section">
