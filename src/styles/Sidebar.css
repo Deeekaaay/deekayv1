@@ -78,17 +78,46 @@
 }
 
 .social-icon-theme {
-  color: #14b28d80;
+  background: linear-gradient(90deg, #00c6fb 0%, #38f9d7 50%, #3f51b5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
   font-size: 2rem;
   margin-right: 0;
-  transition: color 0.3s, opacity 0.3s;
-  /* text-shadow: var(--social-icon-shadow); Use theme variable for shadow */
-  animation: blink-social-icon 2.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transition: color 0.3s, opacity 0.3s, background 0.3s;
+  animation: blink-social-icon 2.3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .social-icon-theme:hover {
-  color: #14b28df5;
+  background: linear-gradient(90deg, #38f9d7 0%, #6e4fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
 
+.social-icon-theme.active,
+.social-icon-theme:active,
+.social-icon-theme:focus {
+  transition: none;
+  animation: none;
+  opacity: 1;
+}
+
+.social-icon-theme.clicked {
+  animation: none !important;
+  opacity: 0.3 !important;
+  transition: none !important;
+}
+
+.social-icon-theme.clicked:hover {
+  opacity: 1 !important;
+  background: linear-gradient(90deg, #38f9d7 0%, #6e4fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 @keyframes blink-social-icon {
@@ -96,7 +125,7 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.4;
+    opacity: 0.3;
   }
 }
 

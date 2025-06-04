@@ -11,6 +11,7 @@ function App() {
     // Check localStorage or default to dark
     return localStorage.getItem("theme") || "dark";
   });
+  const [themeClicked, setThemeClicked] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle("light-theme", theme === "light");
@@ -64,7 +65,10 @@ function App() {
   return (
     <div className="app">
       <a
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        onClick={() => {
+          setTheme(theme === "dark" ? "light" : "dark");
+          setThemeClicked(true);
+        }}
         style={{
           position: "fixed",
           top: 20,
@@ -78,7 +82,11 @@ function App() {
         }}
         aria-label="Switch theme"
       >
-        <i className="fi fi-rr-night-day social-icon-theme" />
+        <i
+          className={`fi fi-rr-night-day social-icon-theme${
+            themeClicked ? " clicked" : ""
+          }`}
+        />
       </a>
       <div className="custom-cursor" />
       <Sidebar activeSection={activeSection} />
