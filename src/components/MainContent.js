@@ -29,8 +29,9 @@ const MainContent = ({ onSectionChange }) => {
       });
     };
 
+    // Lower threshold for more sensitive section detection
     const options = {
-      threshold: 0.2, // 20% of the section must be visible
+      threshold: 0.05, 
     };
 
     const observer = new IntersectionObserver(handleSectionChange, options);
