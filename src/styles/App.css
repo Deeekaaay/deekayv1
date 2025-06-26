@@ -14,8 +14,8 @@
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  /* Updated radial gradient to match body background color */
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.078) 0%, rgba(0, 11, 27, 0) 70%);
+  /* Even softer, more subtle radial gradient for background */
+  background: radial-gradient(circle, rgba(100, 255, 218, 0.03) 0%, rgba(0, 11, 27, 0.008) 60%, rgba(0, 11, 27, 0) 100%);
   z-index: 9999;
   transition: background 0.2s ease, transform 0.1s ease;
 }
