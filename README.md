@@ -7,7 +7,7 @@
 
 ## 🚀 Live Demo
 
-Check out the live version of the portfolio here: [My Portfolio](https://deeekaaay.github.io/deekayv1/)
+Check out the live version of the portfolio here: [My Portfolio](https://dineshsuresh.com?source=GithubReadme)
 
 ---
 
@@ -45,8 +45,6 @@ Check out the live version of the portfolio here: [My Portfolio](https://deeekaa
   - CSS3
 - **Data Source:**
   - Google Sheets (for Experience, Projects, and Certifications)
-- **Hosting:**
-  - [Netlify](https://www.netlify.com) for free hosting and deployment.
 
 ---
 
