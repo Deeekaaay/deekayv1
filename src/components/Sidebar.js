@@ -28,11 +28,11 @@ const Sidebar = ({ activeSection }) => {
       <section id="about-section">
         <h1>Dineshkumar Suresh</h1>
         <h3 className="text-main">
-          Innovative Software Engineer | AI Enthusiast
+          Software Engineer | AI & DevOps Enthusiast | Backend Specialist
         </h3>
         <p className="text-muted">
-          Software Engineer | React.js, Node.js & GoLang | Agile & DevOps
-          Enthusiast | RMIT Master's Student | Open to Internships & Part-Time
+          React.js, Node.js & GoLang | Agile & DevOps
+          Enthusiast | AI Workflow Automation  | RMIT Master's Student | Open to Internships & Part-Time
           Roles in Melbourne
         </p>
       </section>

@@ -31,7 +31,7 @@ const MainContent = ({ onSectionChange }) => {
 
     // Lower threshold for more sensitive section detection
     const options = {
-      threshold: 0.05, 
+      threshold: 0.05,
     };
 
     const observer = new IntersectionObserver(handleSectionChange, options);
@@ -205,12 +205,13 @@ const MainContent = ({ onSectionChange }) => {
       >
         <div className="about-intro">
           <p>
-            From curious beginnings to innovative tech solutions, my journey as
-            a Full-Stack Software Engineer in Australia has been shaped by a
-            passion for solving real-world problems through scalable and modern
-            web technologies.
+            I’m a Software Engineer based in Melbourne, passionate about
+            building secure, scalable, and AI-driven applications. My journey
+            blends backend engineering, DevOps, and workflow automation to solve
+            real-world problems with modern technologies.
           </p>
         </div>
+
         <div className="about-content">
           <article>
             <p>
@@ -218,45 +219,45 @@ const MainContent = ({ onSectionChange }) => {
               <strong>
                 Bachelor’s in Electronics & Communication Engineering
               </strong>
-              , where I developed a strong foundation in computing and systems
-              thinking. This ignited my interest in bridging the gap between
-              hardware and software, eventually guiding me into the dynamic
-              world of full-stack development.
+              , where I built a strong foundation in computing and systems
+              thinking. This curiosity led me to the world of{" "}
+              <strong>software engineering</strong>, evolving into full-stack
+              and backend development.
             </p>
             <p>
-              Over the years, I’ve built and deployed high-performance
-              applications using <strong>React.js</strong>,{" "}
-              <strong>Typescript</strong>, <strong>Node.js</strong>,{" "}
-              <strong>GoLang</strong>, and <strong>Python</strong>. One of my
-              proudest achievements was leading the development of an assessment
-              platform that{" "}
-              <strong>increased evaluation accuracy by 25%</strong>, showcasing
-              my ability to deliver real business impact.
+              Over the years, I’ve developed applications using
+              <strong> React.js</strong>, <strong>TypeScript</strong>,{" "}
+              <strong>Node.js</strong>,<strong> GoLang</strong>, and{" "}
+              <strong>Python</strong>. One highlight was leading the development
+              of an assessment platform that
+              <strong> improved accuracy by 25%</strong>, showing my ability to
+              deliver real business impact. I also enjoy designing APIs, and
+              building microservices ensures maintainability and performance.
             </p>
           </article>
-
           <article>
             <p>
-              I’m currently advancing my skills through a{" "}
-              <strong>Master’s in Information Technology</strong> at{" "}
-              <strong>RMIT University (Melbourne)</strong>, specialising in{" "}
-              <strong>Full-Stack Software Development</strong>,{" "}
-              <strong>Data Visualization</strong>, and <strong>DevOps</strong>.
-              This academic journey helps me stay current with emerging
-              technologies in Australia’s growing tech ecosystem.
+              Currently, I’m pursuing a{" "}
+              <strong>Master’s in Information Technology</strong> at
+              <strong> RMIT University (Melbourne)</strong>, specialising in
+              <strong> Full-Stack Development</strong>, <strong>AI</strong>, and{" "}
+              <strong>DevOps</strong>. My recent focus has been exploring
+              <strong> large language models (LLMs)</strong> and
+              <strong> AI workflow automation</strong> to stay ahead in the
+              evolving tech landscape.
             </p>
             <p>
-              Outside of writing code, I’m deeply passionate about{" "}
-              <strong>collaboration</strong>, <strong>DevOps culture</strong>,
-              and <strong>continuous learning</strong>. I believe in building
-              products that are user-centric, secure, and maintainable. Whether
-              it’s working within cross-functional teams or contributing to
-              innovative side projects, I aim to grow as a tech professional and
-              make a meaningful contribution to Australia’s digital future.
+              Beyond coding, I value <strong>collaboration</strong>,
+              <strong> agile thinking</strong>, and{" "}
+              <strong>continuous learning</strong>. Whether contributing to
+              startups, open-source, or innovative side projects, my goal is to
+              build software that’s not only functional but also
+              <strong> secure, maintainable, and future-ready</strong>.
             </p>
           </article>
         </div>
       </Section>
+
       <Section id="experience" title="Experience" activeSection={activeSection}>
         {experienceLoading ? (
           <div className="loading">Loading experience...</div>
