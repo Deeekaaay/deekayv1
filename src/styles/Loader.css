@@ -1,0 +1,314 @@
+/* src/styles/Loader.css */
+
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.loader-content {
+    width: 90%;
+    max-width: 800px;
+    background: var(--background-hover);
+    border-radius: 12px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 100px var(--cards-text-background);
+    border: 1px solid var(--cards-text-background);
+    overflow: hidden;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Terminal Header */
+.terminal-header {
+    background: var(--background);
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--cards-text-background);
+}
+
+.terminal-title {
+    font-family: var(--font-family);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px var(--cards-text-background);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-buttons span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.btn-close {
+    background: #ff5f56;
+    box-shadow: 0 0 5px rgba(255, 95, 86, 0.6);
+}
+
+.btn-minimize {
+    background: #ffbd2e;
+    box-shadow: 0 0 5px rgba(255, 189, 46, 0.6);
+}
+
+.btn-maximize {
+    background: #27c93f;
+    box-shadow: 0 0 5px rgba(39, 201, 63, 0.6);
+}
+
+/* Terminal Body */
+.terminal-body {
+    padding: 2rem;
+    font-family: var(--font-family);
+    min-height: 400px;
+    position: relative;
+}
+
+.boot-message {
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px var(--cards-text-background);
+}
+
+.cursor-blink {
+    animation: blink 1s step-end infinite;
+    color: var(--primary);
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Loading Steps */
+.loading-steps {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.loading-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+}
+
+.loading-step.active,
+.loading-step.completed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.step-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-family: 'Field Mono', 'Courier New', monospace;
+}
+
+.step-text.loading {
+    color: var(--primary);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.step-status {
+    color: var(--cards-text-hover);
+    font-weight: 700;
+    text-shadow: 0 0 8px var(--cards-text-background);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--cards-text-background);
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0 20px var(--cards-text-background);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.progress-glow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
+    animation: glow-move 1.5s ease-in-out infinite;
+}
+
+@keyframes glow-move {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-20px);
+    }
+}
+
+.progress-text {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    min-width: 50px;
+    text-align: right;
+    text-shadow: 0 0 10px var(--cards-text-background);
+}
+
+/* Anime Sparkles */
+.sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: sparkle-float 3s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--cards-text-background);
+}
+
+@keyframes sparkle-float {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .loader-content {
+        width: 95%;
+        max-width: none;
+    }
+
+    .terminal-body {
+        padding: 1.5rem;
+    }
+
+    .boot-message {
+        font-size: 1rem;
+    }
+
+    .step-text {
+        font-size: 0.85rem;
+    }
+}
