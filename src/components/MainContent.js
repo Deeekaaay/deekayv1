@@ -3,197 +3,50 @@ import React, { useEffect, useState } from "react";
 import "../styles/MainContent.css";
 import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
-import emailjs from "@emailjs/browser";
-import Papa from "papaparse";
+import CertificationsSection from "./certifications/CertificationsSection";
+import { handleContactFormSubmit } from "../utils/emailService";
+import useExperience from "../hooks/useExperience";
+import useProjects from "../hooks/useProjects";
 import Section from "./Section";
 
 const MainContent = ({ onSectionChange }) => {
   const [activeSection, setActiveSection] = useState("about");
-  const [experienceData, setExperienceData] = useState([]);
-  const [certificationData, setCertificationData] = useState([]);
-  const [projectData, setProjectData] = useState([]);
-  const [experienceLoading, setExperienceLoading] = useState(true);
-  const [experienceError, setExperienceError] = useState(null);
-  const [certificationLoading, setCertificationLoading] = useState(true);
-  const [certificationError, setCertificationError] = useState(null);
-  const [projectLoading, setProjectLoading] = useState(true);
-  const [projectError, setProjectError] = useState(null);
+  
+  // Use custom hooks for data fetching
+  const {
+    data: experienceData,
+    loading: experienceLoading,
+    error: experienceError,
+  } = useExperience();
+  
+  const {
+    data: projectData,
+    loading: projectLoading,
+    error: projectError,
+  } = useProjects();
 
   useEffect(() => {
     const handleSectionChange = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setActiveSection(entry.target.id); // Update the active section
-          onSectionChange(entry.target.id); // Notify the parent of the active section
+          setActiveSection(entry.target.id);
+          onSectionChange(entry.target.id);
         }
       });
     };
 
-    // Lower threshold for more sensitive section detection
     const options = {
       threshold: 0.05,
     };
 
     const observer = new IntersectionObserver(handleSectionChange, options);
-
-    // Select all sections to observe
     const sections = document.querySelectorAll("section");
     sections.forEach((section) => observer.observe(section));
 
-    // Cleanup the observer on unmount
     return () => {
       sections.forEach((section) => observer.unobserve(section));
     };
   }, [onSectionChange]);
-
-  useEffect(() => {
-    const csvUrl =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRdCHB-aGuhU0G6641f5IvhB4lKtKZnY9-wqtiVdNGo1fzB7SYeA7_1WoZtRRG2Z3CiPsYf55n_CQ1A/pub?output=csv";
-    setCertificationLoading(true);
-    setCertificationError(null);
-    Papa.parse(csvUrl, {
-      download: true,
-      header: true,
-      complete: (results) => {
-        try {
-          setCertificationData(
-            results.data
-              .filter((row) => row.title)
-              .map((row) => {
-                let image = row.image;
-                return {
-                  ...row,
-                  image,
-                  tags: row.tags ? row.tags.split(/,\s*/) : [],
-                };
-              })
-          );
-          setCertificationLoading(false);
-        } catch (err) {
-          setCertificationError("Failed to load certifications.");
-          setCertificationLoading(false);
-        }
-      },
-      error: (err) => {
-        setCertificationError("Failed to load certifications.");
-        setCertificationLoading(false);
-      },
-    });
-  }, []);
-
-  useEffect(() => {
-    const csvUrl =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRdCHB-aGuhU0G6641f5IvhB4lKtKZnY9-wqtiVdNGo1fzB7SYeA7_1WoZtRRG2Z3CiPsYf55n_CQ1A/pub?gid=485602198&single=true&output=csv";
-    setExperienceLoading(true);
-    setExperienceError(null);
-    setProjectLoading(true);
-    setProjectError(null);
-    Papa.parse(csvUrl, {
-      download: true,
-      header: true,
-      complete: (results) => {
-        try {
-          setExperienceData(
-            results.data
-              .filter((row) => row.Type === "Experience" && row.Title)
-              .map((row) => ({
-                yearRange: row["Year Range"],
-                title: row["Title"],
-                company: row["Organization"],
-                link: row["Link"],
-                location: row["Location"],
-                description: row["Description"],
-                tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
-                details: row["Details"] ? row["Details"].split(" | ") : [],
-              }))
-          );
-          setExperienceLoading(false);
-        } catch (err) {
-          setExperienceError("Failed to load experience data.");
-          setExperienceLoading(false);
-        }
-        try {
-          setProjectData(
-            results.data
-              .filter((row) => row.Type === "Project" && row.Title)
-              .map((row) => {
-                let image = row["Image"];
-                return {
-                  title: row["Title"],
-                  description: row["Description"],
-                  tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
-                  image,
-                  link: row["Link"],
-                };
-              })
-          );
-          setProjectLoading(false);
-        } catch (err) {
-          setProjectError("Failed to load project data.");
-          setProjectLoading(false);
-        }
-      },
-      error: (err) => {
-        setExperienceError("Failed to load experience/project data.");
-        setExperienceLoading(false);
-        setProjectError("Failed to load experience/project data.");
-        setProjectLoading(false);
-      },
-    });
-  }, []);
-
-  async function sendMail(e) {
-    e.preventDefault(); // Prevent the default form submission
-
-    const formData = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      message: document.getElementById("message").value.trim(),
-    };
-
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
-      alert("Please fill out all fields before sending!");
-      return;
-    }
-
-    try {
-      // Replace these with your EmailJS credentials
-      const serviceId = "service_tirj05g";
-      const templateId = "template_3bd0z5a";
-      const userId = "bJTHMkGllaUZj-6c4";
-
-      const emailParams = {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-      };
-
-      // Send the email
-      const result = await emailjs.send(
-        serviceId,
-        templateId,
-        emailParams,
-        userId
-      );
-
-      if (result.status === 200) {
-        alert(
-          "Message sent successfully! 🎉 Check your email for confirmation. 😊"
-        );
-
-        // Clear the form after successful submission
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("message").value = "";
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      console.error("EmailJS Error:", error);
-      alert("Failed to send your message. Please try again.");
-    }
-  }
 
   return (
     <main className="content text-main">
@@ -289,17 +142,7 @@ const MainContent = ({ onSectionChange }) => {
         title="Certifications"
         activeSection={activeSection}
       >
-        {certificationLoading ? (
-          <div className="loading">Loading certifications...</div>
-        ) : certificationError ? (
-          <div className="error">{certificationError}</div>
-        ) : certificationData.length === 0 ? (
-          <div className="empty">No certification data found.</div>
-        ) : (
-          certificationData.map((project, index) => (
-            <ProjectCard key={index} {...project} />
-          ))
-        )}
+        <CertificationsSection />
       </Section>
       <Section id="contact" title="Contact" activeSection={activeSection}>
         <p className="text-muted">
@@ -332,7 +175,7 @@ const MainContent = ({ onSectionChange }) => {
             required
             className="p-small m-small rounded"
           ></textarea>
-          <button type="button" onClick={sendMail} className="rounded">
+          <button type="button" onClick={handleContactFormSubmit} className="rounded">
             Send
           </button>
         </form>

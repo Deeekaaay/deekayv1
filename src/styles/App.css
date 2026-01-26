@@ -20,14 +20,20 @@
   transition: background 0.2s ease, transform 0.1s ease;
 }
 
+/* Hide custom cursor in light mode */
+.light-theme .custom-cursor {
+  display: none;
+}
+
 
 @media (max-width: 850px) {
-  .app{
-    display:block;
+  .app {
+    display: block;
     margin: 0px;
 
   }
+
   .custom-cursor {
-    display:none;
+    display: none;
   }
 }
