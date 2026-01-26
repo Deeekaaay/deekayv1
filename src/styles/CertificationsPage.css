@@ -20,7 +20,7 @@
     font-weight: 700;
     margin-bottom: 2rem;
     transition: all 0.3s ease;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     position: relative;
@@ -30,8 +30,8 @@
 .back-link::before {
     content: "";
     display: inline-block;
-    width: 30px;
-    height: 1px;
+    width: 35px;
+    height: 1.9px;
     background: var(--text-muted);
     transition: width 0.3s ease, background 0.3s ease;
 }
