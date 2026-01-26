@@ -18,7 +18,9 @@
 }
 
 .view-all-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   position: relative;
   padding: 0.75rem 0;
   text-decoration: none;
@@ -45,15 +47,34 @@
   }
 }
 
+.view-all-link::after,
+.view-all-link::before {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background: var(--text-muted);
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
 .view-all-link:hover {
   animation: glossy-shine 1s linear infinite;
   filter: brightness(1.2);
 }
 
-/* Remove the lines - they were causing layout issues */
-.view-all-link::after,
-.view-all-link::before {
-  display: none;
+.view-all-link:hover::after,
+.view-all-link:hover::before {
+  width: 50px;
+  background: var(--primary);
+}
+
+/* Hide decorative lines on mobile */
+@media (max-width: 768px) {
+
+  .view-all-link::after,
+  .view-all-link::before {
+    display: none;
+  }
 }
 
 .certifications-table-container {
