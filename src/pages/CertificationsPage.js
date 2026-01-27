@@ -53,7 +53,6 @@ const CertificationsPage = () => {
           </div>
         )}
 
-        <h1 className="page-title">All Certifications</h1>
       </div>
 
         {loading ? (

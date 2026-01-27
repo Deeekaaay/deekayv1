@@ -30,7 +30,7 @@ const Sidebar = ({ activeSection }) => {
         <h3 className="text-main">
           Software Engineer | AI & DevOps Enthusiast | Backend Specialist
         </h3>
-        <p className="text-muted">
+        <p className="text-muted tagline">
           React.js, Node.js & GoLang | Agile & DevOps
           Enthusiast | AI Workflow Automation  | RMIT Master's Student | Open to Internships & Part-Time
           Roles in Melbourne

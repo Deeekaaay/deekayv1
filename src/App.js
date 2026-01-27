@@ -70,22 +70,6 @@ function App() {
 
   return (
     <div className="app">
-      <a
-        href="#main-content"
-        className="skip-link"
-        style={{
-          position: "absolute",
-          top: "-40px",
-          left: 0,
-          background: "#000",
-          color: "#fff",
-          padding: "8px",
-          zIndex: 100,
-        }}
-      >
-        Skip to content
-      </a>
-      
       {/* Theme Toggle Button - retained from original */}
       <a
         onClick={() => {
