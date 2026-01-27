@@ -120,6 +120,13 @@
   color: transparent;
 }
 
+.sidebar .tagline {
+  font-family: var(--font-family-mono);
+  /* 'Field Mono', 'Courier New', monospace */
+  font-size: var(--font-size-medium);
+  letter-spacing: 0.02em;
+}
+
 @keyframes blink-social-icon {
 
   0%,
