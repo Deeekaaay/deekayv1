@@ -16,26 +16,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Animation now shared in theme.css */
-/* Use .animate-fade-in class instead */
+/* Fade-in animation for sections */
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 section {
   opacity: 0;
+  animation: fadeInSection 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 section.animated {
   opacity: 1;
-}
-
-.section-transition {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.section-transition.animated {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .section-transition {
