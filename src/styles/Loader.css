@@ -18,10 +18,8 @@
     width: 90%;
     max-width: 800px;
     background: var(--background-hover);
-    border-radius: 12px;
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        0 0 100px var(--cards-text-background);
+    border-radius: var(--radius-large);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 100px var(--cards-text-background);
     border: 1px solid var(--cards-text-background);
     overflow: hidden;
     animation: float 3s ease-in-out infinite;
@@ -42,7 +40,7 @@
 /* Terminal Header */
 .terminal-header {
     background: var(--background);
-    padding: 0.8rem 1rem;
+    padding: var(--spacing-small) var(--spacing-medium);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,13 +51,13 @@
     font-family: var(--font-family);
     color: var(--primary);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: var(--font-size-body);
     text-shadow: 0 0 10px var(--cards-text-background);
 }
 
 .terminal-buttons {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--spacing-small);
 }
 
 .terminal-buttons span {
@@ -86,7 +84,7 @@
 
 /* Terminal Body */
 .terminal-body {
-    padding: 2rem;
+    padding: var(--spacing-large);
     font-family: var(--font-family);
     min-height: 400px;
     position: relative;
@@ -94,9 +92,9 @@
 
 .boot-message {
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: var(--font-size-subheading);
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-large);
     text-shadow: 0 0 10px var(--cards-text-background);
 }
 
@@ -120,10 +118,10 @@
 
 /* Loading Steps */
 .loading-steps {
-    margin: 2rem 0;
+    margin: var(--spacing-large) 0;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: var(--spacing-small);
 }
 
 .loading-step {
@@ -132,7 +130,7 @@
     align-items: center;
     opacity: 0;
     transform: translateX(-20px);
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .loading-step.active,
@@ -143,8 +141,8 @@
 
 .step-text {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    font-family: 'Field Mono', 'Courier New', monospace;
+    font-size: var(--font-size-body);
+    font-family: var(--font-family-mono);
 }
 
 .step-text.loading {
@@ -168,7 +166,7 @@
     color: var(--cards-text-hover);
     font-weight: 700;
     text-shadow: 0 0 8px var(--cards-text-background);
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn var(--transition-normal);
 }
 
 @keyframes fadeIn {
@@ -185,17 +183,17 @@
 
 /* Progress Bar */
 .progress-container {
-    margin-top: 3rem;
+    margin-top: var(--spacing-large);
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--spacing-medium);
 }
 
 .progress-bar {
     flex: 1;
     height: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
+    background: var(--glass-background);
+    border-radius: var(--radius-medium);
     overflow: hidden;
     border: 1px solid var(--cards-text-background);
     position: relative;
@@ -205,7 +203,7 @@
     height: 100%;
     background: var(--primary);
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 10px;
+    border-radius: var(--radius-medium);
     position: relative;
     box-shadow: 0 0 20px var(--cards-text-background);
     animation: shimmer 2s infinite;
@@ -246,7 +244,7 @@
 .progress-text {
     color: var(--primary);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: var(--font-size-body);
     min-width: 50px;
     text-align: right;
     text-shadow: 0 0 10px var(--cards-text-background);
@@ -301,7 +299,7 @@
     }
 
     .terminal-body {
-        padding: 1.5rem;
+        padding: var(--spacing-medium);
     }
 
     .boot-message {
@@ -309,6 +307,6 @@
     }
 
     .step-text {
-        font-size: 0.85rem;
+        font-size: var(--font-size-small);
     }
 }

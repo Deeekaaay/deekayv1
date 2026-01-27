@@ -1,18 +1,18 @@
 /* src/styles/Sidebar.css */
 .sidebar {
-    color: var(--text-main);
-    display: flex;
-    flex-direction: column;
-    height: 90vh;
-    justify-content: space-between;
-    padding: var(--spacing-large);
-    position: sticky;
-    top: 0;
-    width: 850px;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: space-between;
+  padding: var(--spacing-large);
+  position: sticky;
+  top: 0;
+  width: 850px;
 }
 
-.sidebar h1{
-  font-size: 40px;
+.sidebar h1 {
+  font-size: var(--font-size-heading);
   margin-bottom: var(--spacing-small);
 }
 
@@ -23,22 +23,22 @@
 .nav-links ul li a {
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: var(--spacing-small) 0;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color var(--transition-normal);
 }
 
 .nav-links ul li a .nav-indicator {
   display: inline-block;
-  margin-right: 16px;
+  margin-right: var(--spacing-medium);
   height: 2px;
   width: 32px;
   background-color: var(--text-muted);
-  transition: width 0.3s ease, background-color 0.3s ease;
+  transition: width var(--transition-normal), background-color var(--transition-normal);
 }
 
 .nav-links ul li a .nav-text {
-  font-size: 0.75rem;
+  font-size: var(--font-size-small);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -49,28 +49,28 @@
 
 .nav-links ul li a:hover .nav-indicator,
 .nav-links ul li a:focus-visible .nav-indicator {
-  width: 64px; /* Expanded width */
-  background-color: var(--nav-text-color-hover); /* Light slate color */
+  width: 64px;
+  background-color: var(--nav-text-color-hover);
 }
 
 .nav-links ul li a:hover .nav-text,
 .nav-links ul li a:focus-visible .nav-text {
-  color: var(--nav-text-color-hover); /* Light slate color */
+  color: var(--nav-text-color-hover);
 }
 
 .nav-links ul li a.active .nav-indicator {
-  width: 64px; /* Expanded line for the active section */
-  background-color: var(--primary); /* Highlighted color */
+  width: 64px;
+  background-color: var(--primary);
 }
 
 .nav-links ul li a.active .nav-text {
-  color: var(--primary); /* Highlighted text color */
+  color: var(--primary);
 }
 
 .social-icons a {
   color: var(--text-muted);
   font-size: 1.8rem;
-  margin-right: 15px;
+  margin-right: var(--spacing-medium);
 }
 
 .social-icons a:hover {
@@ -85,7 +85,7 @@
   color: transparent;
   font-size: 2rem;
   margin-right: 0;
-  transition: color 0.3s, opacity 0.3s, background 0.3s;
+  transition: color var(--transition-normal), opacity var(--transition-normal), background var(--transition-normal);
   animation: blink-social-icon 2.3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
@@ -121,9 +121,12 @@
 }
 
 @keyframes blink-social-icon {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.3;
   }
@@ -131,31 +134,33 @@
 
 @media (max-width: 850px) {
   .sidebar {
-    width: fit-content; /* Use full width for smaller screens */
+    width: fit-content;
     height: auto;
-    position: relative; /* No sticky positioning */
-    padding: var(--spacing-medium); /* Reduce padding */
+    position: relative;
+    padding: var(--spacing-medium);
   }
 
-  .nav-links{
+  .nav-links {
     display: none;
   }
 
-  .sidebar h1{
+  .sidebar h1 {
     font-size: 35px;
     margin-bottom: var(--spacing-small);
   }
+
   .social-icons {
-    justify-content: center; /* Center social icons */
+    justify-content: center;
     margin-top: var(--spacing-medium);
   }
 }
 
 @media (max-height: 500px) {
-  .nav-links{
+  .nav-links {
     display: none;
   }
-  .sidebar h1{
+
+  .sidebar h1 {
     font-size: 30px;
     margin-bottom: var(--spacing-small);
   }
