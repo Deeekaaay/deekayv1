@@ -12,24 +12,24 @@
 }
 
 .view-all-section {
-  margin-top: 1.5rem;
+  margin-top: var(--spacing-medium);
   text-align: center;
-  padding-left: var(--card-padding, 1rem);
+  padding-left: var(--card-padding);
 }
 
 .view-all-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--spacing-small);
   position: relative;
-  padding: 0.75rem 0;
+  padding: var(--spacing-small) 0;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: var(--font-size-small);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
   /* Glossy gradient text effect */
-  background: linear-gradient(135deg, #64ffda 0%, #4dd0c0 50%, #64ffda 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--cards-text-hover) 50%, var(--primary) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -52,9 +52,9 @@
   content: "";
   display: inline-block;
   width: 30px;
-  height: 1px;
+  height: 1.9px;
   background: var(--text-muted);
-  transition: width 0.3s ease, background 0.3s ease;
+  transition: width var(--transition-normal), background var(--transition-normal);
 }
 
 .view-all-link:hover {
@@ -80,8 +80,8 @@
 /* Light mode - no glossy effect, use nav link color */
 .light-theme .view-all-link {
   background: none;
-  -webkit-text-fill-color: var(--text);
-  color: var(--text);
+  -webkit-text-fill-color: var(--text-main);
+  color: var(--text-main);
   animation: none;
 }
 
@@ -106,55 +106,45 @@
 .certifications-table-container {
   width: 100%;
   overflow-x: auto;
-  background: rgba(255, 255, 255, 0.007);
+  background: var(--glass-background);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.3),
-    0 1px 8px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-large);
+  border: var(--glass-border);
+  box-shadow: var(--shadow-elevated), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transform: perspective(1000px) rotateX(0deg);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
   /* Hide scrollbars */
   scrollbar-width: none;
-  /* Firefox */
   -ms-overflow-style: none;
-  /* IE and Edge */
 }
 
 .certifications-table-container::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari, Opera */
 }
 
 .certifications-table-container:hover {
-  box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.4),
-    0 2px 12px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-hover), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transform: perspective(1000px) rotateX(0deg) translateY(-2px);
 }
 
 .certifications-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
+  font-size: var(--font-size-body);
   background: transparent;
-  font-family: 'Field Mono', 'Courier New', monospace;
+  font-family: var(--font-family-mono);
 }
 
 .certifications-table thead {
-  background: rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: var(--glass-background);
+  border-bottom: var(--glass-border);
+  box-shadow: var(--shadow-box);
   position: relative;
 }
 
 .certifications-table th {
-  padding: 1rem;
+  padding: var(--spacing-medium);
   text-align: left;
   font-weight: 600;
   color: var(--text-main);
@@ -164,18 +154,18 @@
 .certifications-table th.sortable {
   cursor: pointer;
   user-select: none;
-  transition: background 0.2s ease;
+  transition: background var(--transition-fast);
 }
 
 .certifications-table th.sortable:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--glass-background-hover);
 }
 
 .sort-icon {
-  margin-left: 0.5rem;
-  font-size: 0.8rem;
+  margin-left: var(--spacing-small);
+  font-size: var(--font-size-small);
   opacity: 0.5;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--transition-fast);
 }
 
 .sort-icon.active {
@@ -184,14 +174,14 @@
 }
 
 .certifications-table tbody tr {
-  border-bottom: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  border-bottom: var(--cards-border);
+  transition: all var(--transition-normal);
   position: relative;
 }
 
 .certifications-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: var(--glass-background-hover);
+  box-shadow: var(--shadow-box);
   transform: translateZ(10px) scale(1.005);
   z-index: 1;
 }
@@ -201,7 +191,7 @@
 }
 
 .certifications-table td {
-  padding: 1rem;
+  padding: var(--spacing-medium);
   color: var(--text-main);
 }
 
@@ -210,7 +200,7 @@
   color: var(--text-muted);
   text-align: center;
   width: 50px;
-  font-size: 0.9rem;
+  font-size: var(--font-size-small);
 }
 
 .cert-title {
@@ -231,12 +221,12 @@
 .cert-tags .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: var(--spacing-small);
 }
 
 .cert-tags .tag {
-  font-size: 0.8rem;
-  padding: 0.3rem 0.6rem;
+  font-size: var(--font-size-tag);
+  padding: var(--spacing-small);
 }
 
 .cert-link {
@@ -245,22 +235,22 @@
 }
 
 .view-cert-link {
-  color: var(--accent-color);
+  color: var(--primary);
   text-decoration: none;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  transition: all 0.2s ease;
+  gap: var(--spacing-small);
+  transition: all var(--transition-fast);
 }
 
 .view-cert-link:hover {
-  color: var(--accent-hover-color);
+  color: var(--cards-text-hover);
   text-decoration: underline;
 }
 
 .view-cert-link i {
-  font-size: 0.85rem;
+  font-size: var(--font-size-small);
 }
 
 /* Responsive Design */
@@ -270,16 +260,16 @@
   }
 
   .certifications-table-container {
-    border-radius: 4px;
+    border-radius: var(--radius-small);
   }
 
   .certifications-table {
-    font-size: 0.85rem;
+    font-size: var(--font-size-small);
   }
 
   .certifications-table th,
   .certifications-table td {
-    padding: 0.75rem 0.5rem;
+    padding: var(--spacing-small);
   }
 
   .cert-title,
@@ -303,14 +293,14 @@
     }
 
     .certifications-table tr {
-      margin-bottom: 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      padding: 0.5rem;
+      margin-bottom: var(--spacing-medium);
+      border: var(--cards-border);
+      border-radius: var(--radius-small);
+      padding: var(--spacing-small);
     }
 
     .certifications-table td {
-      padding: 0.5rem;
+      padding: var(--spacing-small);
       text-align: left;
       border: none;
       position: relative;
@@ -320,7 +310,7 @@
     .certifications-table td::before {
       content: attr(data-label);
       position: absolute;
-      left: 0.5rem;
+      left: var(--spacing-small);
       font-weight: 600;
       color: var(--text-muted);
     }

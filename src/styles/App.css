@@ -1,5 +1,4 @@
 .app {
-  /* Use utility classes: flex, m-large, center, min-h-screen (if defined) */
   display: flex;
   min-height: 100vh;
   justify-content: center;
@@ -17,7 +16,7 @@
   /* Even softer, more subtle radial gradient for background */
   background: radial-gradient(circle, rgba(100, 255, 218, 0.03) 0%, rgba(0, 11, 27, 0.008) 60%, rgba(0, 11, 27, 0) 100%);
   z-index: 9999;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: background var(--transition-fast), transform 0.1s ease;
 }
 
 /* Hide custom cursor in light mode */
@@ -25,12 +24,10 @@
   display: none;
 }
 
-
 @media (max-width: 850px) {
   .app {
     display: block;
     margin: 0px;
-
   }
 
   .custom-cursor {

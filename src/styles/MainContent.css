@@ -6,7 +6,8 @@
   color: var(--text-main);
 }
 
-.content h1, .content h2 {
+.content h1,
+.content h2 {
   color: var(--primary);
 }
 
@@ -14,7 +15,7 @@
   line-height: 1.6;
 }
 
-.content section{
+.content section {
   margin: var(--section-margin);
 }
 
@@ -30,11 +31,11 @@
   font-size: var(--font-size-subheading);
   color: var(--primary);
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-large);
 }
 
 .about-content article {
-  margin-bottom: 30px;
+  margin-bottom: var(--spacing-large);
 }
 
 .about-content p strong {
@@ -43,31 +44,28 @@
 
 #contact {
   text-align: justify;
-  padding: 10px 50px;
+  padding: var(--spacing-small) 50px;
   color: var(--text-main);
-  box-shadow: var(--shadow-box); /* Subtle shadow */
-
+  box-shadow: var(--shadow-box);
 }
-
 
 #contact-form {
   max-width: 600px;
   margin: 50px auto auto auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--spacing-medium);
 }
-
 
 #contact-form input,
 #contact-form textarea {
-  margin-top: 10px;
+  margin-top: var(--spacing-small);
   background-color: var(--input-box-background);
   border: var(--input-box-border);
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: var(--radius-small);
+  padding: var(--spacing-small);
   color: var(--text-main);
-  font-size: 1rem;
+  font-size: var(--font-size-body);
 }
 
 #contact-form input:focus,
@@ -77,73 +75,71 @@
 }
 
 #contact-form button {
-  margin-top: 30px;
-  background: var(--cards-text-background); /* Subtle background for tags */
+  margin-top: var(--spacing-large);
+  background: var(--cards-text-background);
   color: var(--primary);
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 1rem;
+  padding: var(--spacing-small) var(--spacing-large);
+  border-radius: var(--radius-small);
+  font-size: var(--font-size-body);
   font-weight: 500;
-  transition: background 0.3s ease;
+  transition: background var(--transition-normal);
 }
 
 #contact-form button:hover {
   background: var(--cards-text-background-hover);
 }
 
-
 @media (max-width: 850px) {
-  .content{
+  .content {
     margin: 0px;
     width: auto;
     padding: var(--spacing-medium);
     color: var(--text-main);
   }
+
   #contact {
     padding: var(--spacing-medium);
     color: var(--text-main);
-    box-shadow: var(--shadow-box); /* Subtle shadow */
-  
+    box-shadow: var(--shadow-box);
   }
 }
+
 .mobile-section-heading {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: bold; /* Match the bold weight */
-  font-size: 1.2rem; /* Adjust size to match the text-xs class */
-  text-transform: uppercase; /* Apply uppercase styling */
-  letter-spacing: 0.1em; /* Matches tracking-widest */
-  color: var(--nav-text-color); /* Tailwind's text-slate-500 color */
+  font-family: var(--font-family);
+  font-weight: bold;
+  font-size: var(--font-size-subheading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--nav-text-color);
   text-align: center;
-  margin: 20px 0;
+  margin: var(--spacing-large) 0;
   position: relative;
-  overflow: hidden; /* Hide overflowing animation */
+  overflow: hidden;
 }
 
 .mobile-section-heading::after {
   content: "";
   position: absolute;
-  bottom: -2px; /* Position underline just below the text */
-  left: 50%; /* Start at the center */
-  width: 0; /* Start with 0 width */
-  height: 3px; /* Thickness of the underline */
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 3px;
   background-color: var(--primary);
-  transform: translateX(-50%); /* Center align the underline */
-  transition: width 0.6s ease; /* Smooth underline growth */
+  transform: translateX(-50%);
+  transition: width 0.6s ease;
 }
 
 .mobile-section-heading.active {
-  color: var(--primary); /* Change text color when active */
+  color: var(--primary);
   transition: width 0.6s ease;
 }
 
 .mobile-section-heading.active::after {
-  width: 100%; /* Full width when active */
+  width: 100%;
 }
 
 @media (min-width: 851px) {
   .mobile-section-heading {
-    display: none; /* Hide on larger screens */
+    display: none;
   }
 }
