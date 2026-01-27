@@ -1,28 +1,8 @@
 /* src/styles/ExperienceCard.css */
-/* Use utility classes: p-large, m-large, shadow, rounded for .experience-card in markup */
+/* Cards use shared classes from theme.css: .animate-fade-in, .card-base, .tags */
+/* Add in JSX: className="experience-card animate-fade-in card-base" */
 
-.experience-card, .project-card {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes fadeInSection {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.experience-card.animated, .project-card.animated {
-  opacity: 1;
-  transform: translateY(0);
-  animation: fadeInSection 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
+/* Animation handled by .animate-fade-in in theme.css */
 
 .experience-card:hover {
   transform: translateY(-10px);
@@ -66,28 +46,8 @@
   line-height: 1.5;
 }
 
-.experience-tags {
-  list-style: none;
-  margin: 15px 0 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.experience-tags li {
-  background: var(--cards-text-background);
-  color: var(--primary);
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: background 0.3s ease;
-}
-
-.experience-tags li:hover {
-  background: var(--cards-text-background-hover);
-}
+/* Tag styles now use shared .tags class from theme.css */
+/* Add in JSX: className="experience-tags tags" */
 
 .experience-details {
   margin-top: 15px;
@@ -120,6 +80,6 @@
     border-radius: 10px;
     box-shadow: var(--shadow-box);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  
+
   }
 }

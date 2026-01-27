@@ -11,39 +11,10 @@
     text-align: center;
 }
 
+/* back-link uses shared .nav-style-link from theme.css */
+/* Add class in JSX: className="back-link nav-style-link" */
 .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-weight: 700;
     margin-bottom: 2rem;
-    transition: all 0.3s ease;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    position: relative;
-}
-
-.back-link::after,
-.back-link::before {
-    content: "";
-    display: inline-block;
-    width: 35px;
-    height: 1.9px;
-    background: var(--text-muted);
-    transition: width 0.3s ease, background 0.3s ease;
-}
-
-.back-link:hover {
-    color: var(--primary);
-}
-
-.back-link:hover::after,
-.back-link:hover::before {
-    width: 50px;
-    background: var(--primary);
 }
 
 .back-link i {

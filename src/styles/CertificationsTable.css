@@ -17,91 +17,14 @@
   padding-left: var(--card-padding, 1rem);
 }
 
+/* view-all-link uses shared .nav-style-link and .glossy-text from theme.css */
+/* Add these classes in JSX: className="view-all-link nav-style-link glossy-text" */
 .view-all-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  position: relative;
-  padding: 0.75rem 0;
-  text-decoration: none;
-  font-size: 0.8rem;
-  text-transform: uppercase;
+  /* Extend nav-style-link - additional dark mode glossy effect */
   letter-spacing: 2px;
-  font-weight: 700;
-  /* Glossy gradient text effect */
-  background: linear-gradient(135deg, #64ffda 0%, #4dd0c0 50%, #64ffda 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: glossy-shine 3s linear infinite;
-  /* Button reset styles */
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
 }
 
-@keyframes glossy-shine {
-  to {
-    background-position: 200% center;
-  }
-}
-
-.view-all-link::after,
-.view-all-link::before {
-  content: "";
-  display: inline-block;
-  width: 30px;
-  height: 1px;
-  background: var(--text-muted);
-  transition: width 0.3s ease, background 0.3s ease;
-}
-
-.view-all-link:hover {
-  animation: glossy-shine 1s linear infinite;
-  filter: brightness(1.2);
-}
-
-.view-all-link:hover::after,
-.view-all-link:hover::before {
-  width: 50px;
-  background: var(--primary);
-}
-
-/* Hide decorative lines on mobile */
-@media (max-width: 768px) {
-
-  .view-all-link::after,
-  .view-all-link::before {
-    display: none;
-  }
-}
-
-/* Light mode - no glossy effect, use nav link color */
-.light-theme .view-all-link {
-  background: none;
-  -webkit-text-fill-color: var(--text);
-  color: var(--text);
-  animation: none;
-}
-
-.light-theme .view-all-link:hover {
-  -webkit-text-fill-color: var(--primary);
-  color: var(--primary);
-  animation: none;
-  filter: none;
-}
-
-.light-theme .view-all-link::after,
-.light-theme .view-all-link::before {
-  height: 1.9px;
-  background: var(--text-muted);
-}
-
-.light-theme .view-all-link:hover::after,
-.light-theme .view-all-link:hover::before {
-  background: var(--primary);
-}
+/* Mobile override - already handled by .nav-style-link in theme.css */
 
 .certifications-table-container {
   width: 100%;

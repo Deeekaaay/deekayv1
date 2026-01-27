@@ -58,52 +58,26 @@
   margin: 10px 0;
 }
 
-.project-tags {
-  list-style: none;
-  margin: 15px 0 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.project-tags li {
-  background: var(--cards-text-background);
-  color: var(--primary);
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: background 0.3s ease;
-}
-
-.project-tags li:hover {
-  background: var(--cards-text-background-hover);
-}
+/* Tag styles now use shared .tags class from theme.css */
+/* Add in JSX: className="project-tags tags" */
 
 .card-spacing {
   margin: var(--card-margin);
   padding: var(--card-padding);
 }
 
-.project-card, .experience-card {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-card.animated, .experience-card.animated {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Animation handled by .animate-fade-in in theme.css */
+/* Add in JSX: className="project-card animate-fade-in" */
 
 @media (max-width: 850px) {
   .project-card {
     display: block;
   }
+
   .project-image {
     display: none;
   }
+
   .project-image img {
     display: none;
   }
