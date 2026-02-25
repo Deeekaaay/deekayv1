@@ -46,16 +46,28 @@ const ProjectCard = ({
       )}
       <div className="project-content">
         <div className="project-header">
-          <h3>
-            <a
-              className="text-primary"
-              href={link ?? "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {title} ↗
-            </a>
-          </h3>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginBottom: "var(--spacing-small)",
+            }}
+          >
+            <h3 style={{ margin: 0 }}>
+              <a
+                className="text-primary"
+                href={link ?? "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {title} ↗
+              </a>
+            </h3>
+            {tags && tags.length > 5 && (
+              <span className="featured-badge">Featured</span>
+            )}
+          </div>
         </div>
         <p className="text-muted">{description}</p>
         {rating && (

@@ -13,6 +13,18 @@ const MainContent = ({ onSectionChange }) => {
   const [activeSection, setActiveSection] = useState("about");
   const { experience, projects } = useData();
 
+  // Sort projects so "Featured" (tags length > 5) appear first
+  const sortedProjects = React.useMemo(() => {
+    if (!projects.data) return [];
+    return [...projects.data].sort((a, b) => {
+      const aIsFeatured = a.tags && a.tags.length > 5;
+      const bIsFeatured = b.tags && b.tags.length > 5;
+      if (aIsFeatured && !bIsFeatured) return -1;
+      if (!aIsFeatured && bIsFeatured) return 1;
+      return 0; // maintain original order otherwise
+    });
+  }, [projects.data]);
+
   useEffect(() => {
     const handleSectionChange = (entries) => {
       entries.forEach((entry) => {
@@ -120,7 +132,7 @@ const MainContent = ({ onSectionChange }) => {
         ) : projects.data.length === 0 ? (
           <div className="empty">No project data found.</div>
         ) : (
-          projects.data.map((project) => (
+          sortedProjects.map((project) => (
             <ProjectCard key={project.title} {...project} />
           ))
         )}
