@@ -5,25 +5,13 @@ import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
 import CertificationsSection from "./certifications/CertificationsSection";
 import { handleContactFormSubmit } from "../utils/emailService";
-import useExperience from "../hooks/useExperience";
-import useProjects from "../hooks/useProjects";
+import { useData } from "../context/DataContext";
 import Section from "./Section";
+import { SECTION_OBSERVER_OPTIONS } from "../config/constants";
 
 const MainContent = ({ onSectionChange }) => {
   const [activeSection, setActiveSection] = useState("about");
-  
-  // Use custom hooks for data fetching
-  const {
-    data: experienceData,
-    loading: experienceLoading,
-    error: experienceError,
-  } = useExperience();
-  
-  const {
-    data: projectData,
-    loading: projectLoading,
-    error: projectError,
-  } = useProjects();
+  const { experience, projects } = useData();
 
   useEffect(() => {
     const handleSectionChange = (entries) => {
@@ -35,17 +23,14 @@ const MainContent = ({ onSectionChange }) => {
       });
     };
 
-    const options = {
-      threshold: 0.05,
-    };
-
-    const observer = new IntersectionObserver(handleSectionChange, options);
+    const observer = new IntersectionObserver(
+      handleSectionChange,
+      SECTION_OBSERVER_OPTIONS,
+    );
     const sections = document.querySelectorAll("section");
     sections.forEach((section) => observer.observe(section));
 
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
+    return () => observer.disconnect();
   }, [onSectionChange]);
 
   return (
@@ -58,10 +43,12 @@ const MainContent = ({ onSectionChange }) => {
       >
         <div className="about-intro">
           <p>
-            I’m a Software Engineer based in Melbourne, passionate about
-            building secure, scalable, and AI-driven applications. My journey
-            blends backend engineering, DevOps, and workflow automation to solve
-            real-world problems with modern technologies.
+            I'm a <strong>Full Stack Software Engineer</strong> based in
+            Melbourne, Australia, passionate about building secure, scalable,
+            and high-performance applications. My expertise bridges{" "}
+            <strong>backend engineering</strong>,{" "}
+            <strong>frontend development</strong>, and{" "}
+            <strong>Cloud/DevOps</strong> to deliver end-to-end solutions.
           </p>
         </div>
 
@@ -70,7 +57,7 @@ const MainContent = ({ onSectionChange }) => {
             <p>
               It all began with a{" "}
               <strong>
-                Bachelor’s in Electronics & Communication Engineering
+                Bachelor's in Electronics &amp; Communication Engineering
               </strong>
               , where I built a strong foundation in computing and systems
               thinking. This curiosity led me to the world of{" "}
@@ -78,7 +65,7 @@ const MainContent = ({ onSectionChange }) => {
               and backend development.
             </p>
             <p>
-              Over the years, I’ve developed applications using
+              Over the years, I've developed applications using
               <strong> React.js</strong>, <strong>TypeScript</strong>,{" "}
               <strong>Node.js</strong>,<strong> GoLang</strong>, and{" "}
               <strong>Python</strong>. One highlight was leading the development
@@ -90,21 +77,21 @@ const MainContent = ({ onSectionChange }) => {
           </article>
           <article>
             <p>
-              Currently, I’m pursuing a{" "}
-              <strong>Master’s in Information Technology</strong> at
+              I recently enhanced my technical prowess via a{" "}
+              <strong>Master's in Information Technology</strong> at
               <strong> RMIT University (Melbourne)</strong>, specialising in
-              <strong> Full-Stack Development</strong>, <strong>AI</strong>, and{" "}
-              <strong>DevOps</strong>. My recent focus has been exploring
-              <strong> large language models (LLMs)</strong> and
-              <strong> AI workflow automation</strong> to stay ahead in the
-              evolving tech landscape.
+              <strong> Full-Stack Development</strong>,{" "}
+              <strong>Cloud Computing</strong>, and <strong>DevOps</strong>. I
+              have robust hands-on experience deploying scalable architecture on
+              <strong> AWS</strong> and setting up efficient{" "}
+              <strong>CI/CD pipelines</strong>.
             </p>
             <p>
               Beyond coding, I value <strong>collaboration</strong>,
               <strong> agile thinking</strong>, and{" "}
               <strong>continuous learning</strong>. Whether contributing to
               startups, open-source, or innovative side projects, my goal is to
-              build software that’s not only functional but also
+              build software that's not only functional but also
               <strong> secure, maintainable, and future-ready</strong>.
             </p>
           </article>
@@ -112,31 +99,33 @@ const MainContent = ({ onSectionChange }) => {
       </Section>
 
       <Section id="experience" title="Experience" activeSection={activeSection}>
-        {experienceLoading ? (
+        {experience.loading ? (
           <div className="loading">Loading experience...</div>
-        ) : experienceError ? (
-          <div className="error">{experienceError}</div>
-        ) : experienceData.length === 0 ? (
+        ) : experience.error ? (
+          <div className="error">{experience.error}</div>
+        ) : experience.data.length === 0 ? (
           <div className="empty">No experience data found.</div>
         ) : (
-          experienceData.map((experience, index) => (
-            <ExperienceCard key={index} {...experience} />
+          experience.data.map((exp) => (
+            <ExperienceCard key={exp.title} {...exp} />
           ))
         )}
       </Section>
+
       <Section id="projects" title="Projects" activeSection={activeSection}>
-        {projectLoading ? (
+        {projects.loading ? (
           <div className="loading">Loading projects...</div>
-        ) : projectError ? (
-          <div className="error">{projectError}</div>
-        ) : projectData.length === 0 ? (
+        ) : projects.error ? (
+          <div className="error">{projects.error}</div>
+        ) : projects.data.length === 0 ? (
           <div className="empty">No project data found.</div>
         ) : (
-          projectData.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+          projects.data.map((project) => (
+            <ProjectCard key={project.title} {...project} />
           ))
         )}
       </Section>
+
       <Section
         id="certifications"
         title="Certifications"
@@ -144,6 +133,7 @@ const MainContent = ({ onSectionChange }) => {
       >
         <CertificationsSection />
       </Section>
+
       <Section id="contact" title="Contact" activeSection={activeSection}>
         <p className="text-muted">
           💡 "Got a genius project idea? Or just want to chat about life, code,
@@ -175,7 +165,11 @@ const MainContent = ({ onSectionChange }) => {
             required
             className="p-small m-small rounded"
           ></textarea>
-          <button type="button" onClick={handleContactFormSubmit} className="rounded">
+          <button
+            type="button"
+            onClick={handleContactFormSubmit}
+            className="rounded"
+          >
             Send
           </button>
         </form>

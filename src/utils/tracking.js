@@ -65,7 +65,7 @@ const getLocationFromTimezone = () => {
     const offsetHours = Math.abs(offset / 60);
     const offsetSign = offset > 0 ? "-" : "+";
     const utcOffset = `UTC${offsetSign}${offsetHours}`;
-    
+
     return {
       timezone,
       country,
@@ -127,11 +127,10 @@ Visit logged successfully! 🎉`;
     const response = await fetch(
       `https://api.telegram.org/bot${TELEGRAM_CONFIG.BOT_TOKEN}/sendMessage?chat_id=${
         TELEGRAM_CONFIG.CHAT_ID
-      }&text=${encodeURIComponent(message)}`
+      }&text=${encodeURIComponent(message)}`,
     );
 
     const data = await response.json();
-    console.log("Message sent to Telegram:", data);
     return data;
   } catch (error) {
     console.error("Error sending Telegram message:", error);

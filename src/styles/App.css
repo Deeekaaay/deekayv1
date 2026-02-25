@@ -5,6 +5,19 @@
   margin: 0px 100px;
 }
 
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
 .custom-cursor {
   position: fixed;
   width: 850px;

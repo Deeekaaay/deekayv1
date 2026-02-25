@@ -28,7 +28,7 @@ const ProjectCard = ({
           }
         });
       },
-      { threshold: 0.01, rootMargin: "0px 0px -20% 0px" }
+      { threshold: 0.01, rootMargin: "0px 0px -20% 0px" },
     );
     observer.observe(card);
     return () => observer.disconnect();
@@ -41,7 +41,7 @@ const ProjectCard = ({
     >
       {image && (
         <div className="project-image">
-          <img className="rounded" src={image} alt={title} />
+          <img className="rounded" src={image} alt={title} loading="lazy" />
         </div>
       )}
       <div className="project-content">
