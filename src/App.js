@@ -1,38 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 import CertificationsPage from "./pages/CertificationsPage";
-import Loader from "./components/Loader";
 import { trackVisitorSource } from "./utils/tracking";
 import { useData } from "./context/DataContext";
 import "./styles/App.css";
 import "./styles/theme.css";
-import "./styles/Loader.css";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("about");
   const { fetchCertifications } = useData();
   const [theme, setTheme] = useState(() => {
-    // Check localStorage or default to dark
     return localStorage.getItem("theme") || "dark";
   });
   const [themeClicked, setThemeClicked] = useState(false);
 
-  // Handle loader completion
-  const handleLoadComplete = () => {
-    setIsLoading(false);
-  };
-
-  // Preload data function for Loader
-  const preloadData = React.useCallback(async () => {
-    // Actual data fetching
-    try {
-      await fetchCertifications();
-    } catch (error) {
-      console.error("Failed to preload data:", error);
-    }
+  useEffect(() => {
+    fetchCertifications().catch((error) =>
+      console.error("Failed to preload data:", error)
+    );
   }, [fetchCertifications]);
 
   useEffect(() => {
@@ -40,33 +27,24 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Track visitor source and send Telegram notification (optional)
   useEffect(() => {
     trackVisitorSource();
   }, []);
 
-  // Custom cursor effect
   useEffect(() => {
-    if (isLoading) return;
-    
     const cursor = document.querySelector(".custom-cursor");
     if (!cursor) return;
-    
+
     const moveCursor = (e) => {
       cursor.style.left = `${e.clientX}px`;
       cursor.style.top = `${e.clientY}px`;
     };
-    
+
     document.addEventListener("mousemove", moveCursor);
     return () => {
       document.removeEventListener("mousemove", moveCursor);
     };
-  }, [isLoading]);
-
-  // Show loader if loading
-  if (isLoading) {
-    return <Loader onLoadComplete={handleLoadComplete} dataLoader={preloadData} />;
-  }
+  }, []);
 
   return (
     <div className="app">
