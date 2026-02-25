@@ -91,7 +91,6 @@ export const DataProvider = ({ children }) => {
           title: row["Title"],
           description: row["Description"],
           tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
-          image: row["Image"],
           link: row["Link"],
         }));
 

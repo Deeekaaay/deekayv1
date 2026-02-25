@@ -6,7 +6,6 @@ const ProjectCard = ({
   title,
   description,
   tags,
-  image,
   link,
   index = 0,
 }) => {
@@ -36,11 +35,6 @@ const ProjectCard = ({
       ref={cardRef}
       className="project-card flex rounded shadow card-spacing"
     >
-      {image && (
-        <div className="project-image">
-          <img className="rounded" src={image} alt={title} loading="lazy" />
-        </div>
-      )}
       <div className="project-content">
         <div className="project-header">
           <div

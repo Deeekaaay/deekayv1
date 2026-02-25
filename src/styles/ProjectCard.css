@@ -4,6 +4,7 @@
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
+/* Used by CertificationCard (logo on the left side) */
 .project-image {
   align-items: start;
   flex: 1;
@@ -16,7 +17,7 @@
   width: 75%;
   height: auto;
   border-radius: var(--radius-medium);
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .project-content {
@@ -103,10 +104,6 @@
   }
 
   .project-image {
-    display: none;
-  }
-
-  .project-image img {
     display: none;
   }
 }
