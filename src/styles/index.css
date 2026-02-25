@@ -1,18 +1,3 @@
-body {
-  margin: 0;
-  font-family: var(--font-family);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: var(--font-family-mono);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 /* Fade-in animation for sections */
 @keyframes fadeInSection {
   from {

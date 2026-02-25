@@ -111,6 +111,12 @@ button {
   transition: background-color 0.3s;
 }
 
+/* Shared card spacing utility */
+.card-spacing {
+  margin: var(--card-margin);
+  padding: var(--card-padding);
+}
+
 /* Utility classes for reuse */
 .flex {
   display: flex;

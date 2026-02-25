@@ -109,11 +109,6 @@
   margin-bottom: var(--spacing-small);
 }
 
-.card-spacing {
-  margin: var(--card-margin);
-  padding: var(--card-padding);
-}
-
 @media (max-width: 850px) {
   .experience-card {
     padding: var(--spacing-medium);

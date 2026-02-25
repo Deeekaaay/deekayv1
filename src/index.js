@@ -6,7 +6,6 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DataProvider } from "./context/DataContext";
 import ScrollToTop from "./components/ScrollToTop";
-import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,5 +18,3 @@ root.render(
     </DataProvider>
   </BrowserRouter>,
 );
-
-reportWebVitals();

@@ -8,7 +8,6 @@ const ProjectCard = ({
   tags,
   image,
   link,
-  rating,
   index = 0,
 }) => {
   const cardRef = useRef(null);
@@ -16,8 +15,6 @@ const ProjectCard = ({
   useEffect(() => {
     const card = cardRef.current;
     if (!card) return;
-    card.style.animationDelay = null;
-    card.style.transitionDelay = null;
     const observer = new window.IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -70,11 +67,6 @@ const ProjectCard = ({
           </div>
         </div>
         <p className="text-muted">{description}</p>
-        {rating && (
-          <div className="project-rating">
-            <span>★ {rating}</span>
-          </div>
-        )}
         <TagList tags={tags} />
       </div>
     </div>
