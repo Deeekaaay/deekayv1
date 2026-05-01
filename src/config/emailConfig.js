@@ -2,13 +2,13 @@
 // EmailJS configuration
 
 export const EMAIL_CONFIG = {
-  SERVICE_ID: "service_tirj05g",
-  TEMPLATE_ID: "template_3bd0z5a",
-  USER_ID: "bJTHMkGllaUZj-6c4",
+  SERVICE_ID: process.env.REACT_APP_EMAILJS_SERVICE_ID,
+  TEMPLATE_ID: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+  USER_ID: process.env.REACT_APP_EMAILJS_USER_ID,
 };
 
 // Telegram Bot configuration for visitor tracking
 export const TELEGRAM_CONFIG = {
-  BOT_TOKEN: "7325453256:AAHe0NiZ2lWu34Ci3AXNUxA5MfRxuQmDFV8",
-  CHAT_ID: "7280813033",
+  BOT_TOKEN: process.env.REACT_APP_TELEGRAM_TOKEN,
+  CHAT_ID: process.env.REACT_APP_TELEGRAM_CHAT_ID,
 };

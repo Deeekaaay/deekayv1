@@ -10,7 +10,9 @@
       "WebFetch(domain:github.com)",
       "Bash(npm install:*)",
       "Bash(npx jsrepo add:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(git commit:*)",
+      "WebFetch(domain:juanmora.co)"
     ]
   }
 }
