@@ -1,6 +1,6 @@
 // src/components/ArcusHero.js
 import React from "react";
-import "../styles/ArcusHero.css";
+import "./ArcusHero.css";
 
 const ArcusHero = () => (
   <div className="arcus-hero">

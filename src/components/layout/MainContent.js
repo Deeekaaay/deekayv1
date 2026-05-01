@@ -1,14 +1,14 @@
 // src/components/MainContent.js
 import React, { useEffect, useState } from "react";
-import "../styles/MainContent.css";
-import ExperienceCard from "./ExperienceCard";
-import ProjectCard from "./ProjectCard";
-import CertificationsSection from "./certifications/CertificationsSection";
+import "./MainContent.css";
+import ExperienceCard from "../cards/ExperienceCard";
+import ProjectCard from "../cards/ProjectCard";
+import CertificationsSection from "../certifications/CertificationsSection";
 import ArcusHero from "./ArcusHero";
-import { handleContactFormSubmit } from "../utils/emailService";
-import { useData } from "../context/DataContext";
+import { handleContactFormSubmit } from "../../utils/emailService";
+import { useData } from "../../context/DataContext";
 import Section from "./Section";
-import { SECTION_OBSERVER_OPTIONS } from "../config/constants";
+import { SECTION_OBSERVER_OPTIONS } from "../../config/constants";
 
 const MainContent = ({ onSectionChange }) => {
   const [activeSection, setActiveSection] = useState("about");
@@ -61,34 +61,33 @@ const MainContent = ({ onSectionChange }) => {
         <div className="about-intro">
           <p>
             I'm a <strong>Full-Stack Software Engineer</strong> based in
-            Melbourne, building production systems that ship to real users. I
-            founded and solo-engineered{" "}
-            <strong>ArcusVision</strong> — a live AI productivity SaaS with{" "}
-            <strong>338+ active users</strong> — taking it from zero to
-            production across a Next.js, Go, and AWS stack. That's what I do:
-            I own things end to end.
+            Melbourne. I founded and solo-engineered{" "}
+            <strong>ArcusVision</strong> — a live AI productivity SaaS — from a
+            blank repo to <strong>338+ active users</strong>, handling
+            architecture, APIs, cloud infra, and CI/CD entirely alone. I don't
+            just build features. I ship products.
           </p>
         </div>
 
         <div className="about-content">
           <article>
             <p>
-              My 3+ years of commercial experience spans IoT backend systems at{" "}
-              <strong>AquaTerra</strong> (AWS, Node.js), distributed assessment
-              platforms at <strong>Avasoft</strong> (TypeScript, Go), and
-              client-facing production websites. I work across the full stack —
-              REST APIs, event-driven pipelines, RAG implementations, CI/CD —
-              and I communicate clearly across engineering and product.
+              3+ years of commercial experience across IoT platforms, distributed
+              backend systems, and AI-integrated SaaS. At{" "}
+              <strong>AquaTerra</strong> I led a backend architecture revamp for
+              a Node.js IoT system on AWS. At <strong>Avasoft</strong> I built
+              TypeScript and Go APIs that lifted assessment accuracy by 25%. I
+              move fast across the stack and I leave things better than I found
+              them.
             </p>
           </article>
           <article>
             <p>
-              I'm completing a{" "}
-              <strong>Master's in Information Technology</strong> at{" "}
-              <strong>RMIT Melbourne</strong>, specialising in Full-Stack
-              Development, Cloud Computing, and DevOps. I'm actively looking
-              for full-time Software Engineering roles in Melbourne from
-              mid-2026.
+              Finishing a <strong>Master's in Information Technology</strong> at{" "}
+              <strong>RMIT Melbourne</strong> — Full-Stack, Cloud, and DevOps.
+              Available for full-time Software Engineering roles in Melbourne
+              from mid-2026. If you're building something that needs to scale
+              and ship, let's talk.
             </p>
           </article>
         </div>

@@ -1,7 +1,7 @@
 // src/components/certifications/CertificationCard.js
 import React, { useEffect, useRef } from "react";
-import TagList from "../TagList";
-import "../../styles/ProjectCard.css"; // Reuse ProjectCard styles
+import TagList from "../ui/TagList";
+import "../cards/ProjectCard.css"; // Reuse ProjectCard styles
 
 const CertificationCard = ({ title, description, image, tags, link, org }) => {
   const cardRef = useRef(null);

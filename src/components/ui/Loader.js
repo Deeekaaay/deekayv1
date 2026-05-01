@@ -1,6 +1,6 @@
 // src/components/Loader.js
 import React, { useState, useEffect } from 'react';
-import '../styles/Loader.css';
+import './Loader.css';
 
 const Loader = ({ onLoadComplete, dataLoader }) => {
   const [currentStep, setCurrentStep] = useState(0);

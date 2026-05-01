@@ -1,6 +1,6 @@
 // src/components/MobileNav.js
 import React from "react";
-import "../styles/MobileNav.css";
+import "./MobileNav.css";
 
 const NAV_ITEMS = [
   { id: "about", label: "About", icon: "fi-rr-user" },

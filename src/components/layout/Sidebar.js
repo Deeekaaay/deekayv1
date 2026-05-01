@@ -1,6 +1,6 @@
 // src/components/Sidebar.js
 import React from "react";
-import "../styles/Sidebar.css";
+import "./Sidebar.css";
 
 const Sidebar = ({ activeSection }) => {
   const scrollTo = (e, id) => {

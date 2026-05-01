@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import CertificationsTable from "../components/certifications/CertificationsTable";
 import useCertifications from "../hooks/useCertifications";
-import "../styles/CertificationsPage.css";
+import "./CertificationsPage.css";
 
 const CertificationsPage = () => {
   const { data: certifications, loading, error } = useCertifications();

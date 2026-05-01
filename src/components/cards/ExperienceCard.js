@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import "../styles/ExperienceCard.css";
-import TagList from "./TagList";
+import "./ExperienceCard.css";
+import TagList from "../ui/TagList";
 
 const ExperienceCard = ({
   yearRange,

@@ -1,11 +1,11 @@
 // src/App.js
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import MainContent from "./components/MainContent";
+import Sidebar from "./components/layout/Sidebar";
+import MainContent from "./components/layout/MainContent";
 import CertificationsPage from "./pages/CertificationsPage";
-import BackgroundOverlay from "./components/BackgroundOverlay";
-import MobileNav from "./components/MobileNav";
+import BackgroundOverlay from "./components/background/BackgroundOverlay";
+import MobileNav from "./components/layout/MobileNav";
 import { trackVisitorSource } from "./utils/tracking";
 import ResumeDownload from "./pages/ResumeDownload";
 import "./styles/App.css";

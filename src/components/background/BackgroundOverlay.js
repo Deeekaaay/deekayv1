@@ -1,6 +1,6 @@
 // src/components/BackgroundOverlay.js
 import React from "react";
-import "../styles/BackgroundOverlay.css";
+import "./BackgroundOverlay.css";
 
 /**
  * BackgroundOverlay

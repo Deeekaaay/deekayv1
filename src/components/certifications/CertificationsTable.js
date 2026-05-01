@@ -1,7 +1,7 @@
 // src/components/certifications/CertificationsTable.js
 import React from "react";
-import TagList from "../TagList";
-import "../../styles/CertificationsTable.css";
+import TagList from "../ui/TagList";
+import "./CertificationsTable.css";
 
 const CertificationsTable = ({ certifications }) => {
   if (!certifications || certifications.length === 0) {

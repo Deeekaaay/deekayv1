@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import "../styles/ProjectCard.css";
-import TagList from "./TagList";
+import "./ProjectCard.css";
+import TagList from "../ui/TagList";
 
 const ProjectCard = ({
   title,
