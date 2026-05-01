@@ -127,6 +127,22 @@
   letter-spacing: 0.02em;
 }
 
+.resume-btn {
+  display: inline-block;
+  background: var(--cards-text-background);
+  color: var(--primary);
+  padding: var(--spacing-small) var(--spacing-large);
+  border-radius: var(--radius-small);
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--transition-normal);
+}
+
+.resume-btn:hover {
+  background: var(--cards-text-background-hover);
+}
+
 @keyframes blink-social-icon {
 
   0%,

@@ -23,6 +23,16 @@ const Sidebar = ({ activeSection }) => {
           Agile Methodologies | Based in Melbourne, VIC | Actively seeking
           Software Engineering opportunities
         </p>
+        <div className="mt-4">
+          <a
+            href="/assets/DineshkumarDeekay.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="resume-btn"
+          >
+            Download CV
+          </a>
+        </div>
       </section>
 
       <nav className="nav-links" aria-label="Page sections">

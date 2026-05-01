@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 import CertificationsPage from "./pages/CertificationsPage";
 import { trackVisitorSource } from "./utils/tracking";
+import ResumeDownload from "./pages/ResumeDownload";
 import "./styles/App.css";
 import "./styles/theme.css";
 
@@ -67,6 +68,7 @@ function App() {
           }
         />
         <Route path="/certifications" element={<CertificationsPage />} />
+        <Route path="/resume" element={<ResumeDownload />} />
       </Routes>
     </div>
   );
