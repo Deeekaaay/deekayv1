@@ -1,36 +1,47 @@
+/* Fonts loaded via <link> in index.html with preload — no duplicate @import needed */
+
 :root {
   /* Colors */
-  --background: #000b1b;
-  --background-hover: #0d1a2d;
-  --primary: #64ffda;
-  --text-main: #ccd6f6;
-  --text-muted: #8892b0;
-  --cards-text-hover: #2dc799;
-  --nav-text-color: #94a3b8;
-  --nav-text-color-hover: #e2e8f0;
+  --background: #0f0e0d;
+  --background-secondary: #1C2420;
+  --background-hover: #1a1917;
+  --primary: #F59E0B;
+  --primary-hover: #D97706;
+  --text-main: #F5F0E8;
+  --text-muted: #9E9A94;
+  --cards-text-hover: #FBBF24;
+  --nav-text-color: #7C7872;
+  --nav-text-color-hover: #F5F0E8;
   --error-color: #ef4444;
 
+  /* Scrollbar */
+  --scrollbar-track: var(--background);
+  --scrollbar-thumb: var(--background-secondary);
+  --scrollbar-thumb-hover: var(--primary);
+
   /* Shadows & Borders */
-  --shadow-box: 0 8px 24px rgba(0, 0, 0, 0.1);
-  --shadow-elevated: 0 10px 30px rgba(0, 0, 0, 0.3), 0 1px 8px rgba(0, 0, 0, 0.2);
-  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.4), 0 2px 12px rgba(0, 0, 0, 0.3);
-  --cards-border: 1px solid #233554;
-  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --shadow-box: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-elevated: 0 10px 30px rgba(0, 0, 0, 0.4), 0 1px 8px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.5), 0 2px 12px rgba(0, 0, 0, 0.3);
+  --cards-border: 1px solid #2a2825;
+  --glass-border: 1px solid rgba(245, 158, 11, 0.15);
 
   /* Card Backgrounds */
-  --cards-text-background: rgba(100, 255, 218, 0.1);
-  --cards-text-background-hover: rgba(100, 255, 218, 0.2);
-  --glass-background: rgba(255, 255, 255, 0.05);
-  --glass-background-hover: rgba(255, 255, 255, 0.08);
+  --cards-text-background: rgba(245, 158, 11, 0.08);
+  --cards-text-background-hover: rgba(245, 158, 11, 0.15);
+  --glass-background: rgba(255, 255, 255, 0.04);
+  --glass-background-hover: rgba(245, 158, 11, 0.05);
 
   /* Typography */
-  --font-family: 'Inter', sans-serif;
-  --font-family-mono: 'Field Mono', 'Courier New', monospace;
-  --font-size-heading: 2.5rem;
-  --font-size-subheading: 1.3rem;
+  --font-family: 'IBM Plex Sans', sans-serif;
+  --font-family-mono: 'IBM Plex Mono', monospace;
+  --font-family-display: 'Space Grotesk', sans-serif;
+  --font-size-heading: 2.8rem;
+  --font-size-subheading: 1.2rem;
   --font-size-body: 1.03rem;
   --font-size-small: 0.8rem;
-  --font-size-tag: 0.8rem;
+  --font-size-tag: 0.75rem;
+  --font-size-medium: 0.9rem;
 
   /* Spacing */
   --spacing-small: 8px;
@@ -52,9 +63,13 @@
   --transition-smooth: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Input Styles */
-  --input-box-background: #112240;
-  --input-box-border: 1px solid #64ffdb86;
-  --social-icon-shadow: 0 2px 8px #14b28d99, 0 1px 2px #0006;
+  --input-box-background: #1a1917;
+  --input-box-border: 1px solid rgba(245, 158, 11, 0.3);
+  --social-icon-shadow: 0 2px 8px rgba(245, 158, 11, 0.4), 0 1px 2px #0006;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -77,7 +92,17 @@ h6 {
 }
 
 h1 {
+  font-family: var(--font-family-display);
   font-size: var(--font-size-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h2, h3 {
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 p {
@@ -187,32 +212,25 @@ button {
   margin: var(--spacing-large);
 }
 
-/* Light theme using Corporate Calm palette */
+/* Light theme */
 .light-theme {
-  --background: #f3f4f6;
-  --background-hover: #e5e7eb;
-  --primary: #3fc6b6;
-  /* Muted Aqua */
-  --primary-hover: #2fa393;
-  /* Slightly deeper for button hover */
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --shadow-box: 0 8px 32px rgba(63, 198, 182, 0.10);
-  /* More depth for form/card separation */
-  --cards-border: 1px solid #d1d5db;
-  --cards-text-background: rgba(63, 198, 182, 0.08);
-  /* Softer, subtle accent */
-  --cards-text-background-hover: rgba(63, 198, 182, 0.16);
-  /* Slightly stronger for hover */
-  --nav-text-color: #475569;
-  --nav-text-color-hover: #3eb6a3;
-  /* Teal Tint for nav hover, matches palette */
-  --cards-text-hover: #3eb6a3;
-  /* Teal Tint for card text hover */
+  --background: #faf9f7;
+  --background-secondary: #ede9e2;
+  --background-hover: #f0ede8;
+  --primary: #D97706;
+  --primary-hover: #B45309;
+  --text-main: #1c1a18;
+  --text-muted: #6b6560;
+  --shadow-box: 0 8px 32px rgba(217, 119, 6, 0.10);
+  --cards-border: 1px solid #e5e0d8;
+  --cards-text-background: rgba(217, 119, 6, 0.08);
+  --cards-text-background-hover: rgba(217, 119, 6, 0.16);
+  --nav-text-color: #8a8278;
+  --nav-text-color-hover: #1c1a18;
+  --cards-text-hover: #B45309;
   --input-box-background: #ffffff;
-  --social-icon-shadow: 0 2px 8px #14b28d40, 0 1px 2px rgba(254, 253, 253, 0.13);
-
-  --input-box-border: 1px solid #cbd5e1;
+  --input-box-border: 1px solid rgba(217, 119, 6, 0.3);
+  --social-icon-shadow: 0 2px 8px rgba(217, 119, 6, 0.3), 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 body.light-theme,
@@ -233,8 +251,8 @@ body.light-theme,
   :root {
     --card-margin: 32px 0px;
     --card-padding: 12px;
-    --font-size-heading: 2rem;
-    --font-size-subheading: 1.05rem;
+    --font-size-heading: 2.4rem;
+    --font-size-subheading: 1.1rem;
     --font-size-body: 0.97rem;
   }
 
@@ -315,4 +333,30 @@ body.light-theme,
     font-size: 0.8rem;
     padding: 5px 10px;
   }
+}
+
+/* Custom Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbar-track); /* creates padding around thumb */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Text Selection Highlight */
+::selection {
+  background: rgba(245, 158, 11, 0.4); /* Transparent primary amber */
+  color: inherit;
+}
+::-moz-selection {
+  background: rgba(245, 158, 11, 0.4);
+  color: inherit;
 }

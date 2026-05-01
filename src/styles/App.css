@@ -1,8 +1,9 @@
 .app {
   display: flex;
   min-height: 100vh;
-  justify-content: center;
-  margin: 0px 100px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 4rem);
 }
 
 .theme-toggle {
@@ -25,7 +26,7 @@
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(100, 255, 218, 0.03) 0%, rgba(0, 11, 27, 0.008) 60%, rgba(0, 11, 27, 0) 100%);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.04) 0%, rgba(15, 14, 13, 0.008) 60%, rgba(15, 14, 13, 0) 100%);
   z-index: 9999;
   transition: background var(--transition-fast), transform 0.1s ease;
 }
@@ -36,8 +37,8 @@
 
 @media (max-width: 850px) {
   .app {
-    display: block;
-    margin: 0px;
+    flex-direction: column;
+    padding: 0;
   }
 
   .custom-cursor {

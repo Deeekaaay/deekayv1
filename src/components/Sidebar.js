@@ -19,9 +19,7 @@ const Sidebar = ({ activeSection }) => {
           Full Stack Software Engineer | Backend Specialist
         </h3>
         <p className="text-muted tagline">
-          React.js, Node.js, GoLang &amp; Python | AWS, CI/CD &amp; DevOps |
-          Agile Methodologies | Based in Melbourne, VIC | Actively seeking
-          Software Engineering opportunities
+          Building production systems in Melbourne — Next.js · Go · AWS
         </p>
         <div className="mt-4">
           <a

@@ -4,6 +4,7 @@ import "../styles/MainContent.css";
 import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
 import CertificationsSection from "./certifications/CertificationsSection";
+import ArcusHero from "./ArcusHero";
 import { handleContactFormSubmit } from "../utils/emailService";
 import { useData } from "../context/DataContext";
 import Section from "./Section";
@@ -11,18 +12,22 @@ import { SECTION_OBSERVER_OPTIONS } from "../config/constants";
 
 const MainContent = ({ onSectionChange }) => {
   const [activeSection, setActiveSection] = useState("about");
+  const [showEarlierWork, setShowEarlierWork] = useState(false);
   const { experience, projects } = useData();
 
-  // Sort projects so "Featured" (tags length > 5) appear first
-  const sortedProjects = React.useMemo(() => {
+  // Featured = showFirst flag from sheet; fallback = tags.length > 5
+  const featuredProjects = React.useMemo(() => {
     if (!projects.data) return [];
-    return [...projects.data].sort((a, b) => {
-      const aIsFeatured = a.tags && a.tags.length > 5;
-      const bIsFeatured = b.tags && b.tags.length > 5;
-      if (aIsFeatured && !bIsFeatured) return -1;
-      if (!aIsFeatured && bIsFeatured) return 1;
-      return 0; // maintain original order otherwise
-    });
+    return projects.data.filter(
+      (p) => p.showFirst || (p.tags && p.tags.length > 5)
+    );
+  }, [projects.data]);
+
+  const earlierProjects = React.useMemo(() => {
+    if (!projects.data) return [];
+    return projects.data.filter(
+      (p) => !p.showFirst && !(p.tags && p.tags.length > 5)
+    );
   }, [projects.data]);
 
   useEffect(() => {
@@ -49,66 +54,47 @@ const MainContent = ({ onSectionChange }) => {
     <main className="content text-main">
       <Section
         id="about"
-        title="Hello World!"
+        title="Hello."
         className="about-section"
         activeSection={activeSection}
       >
         <div className="about-intro">
           <p>
-            I'm a <strong>Full Stack Software Engineer</strong> based in
-            Melbourne, Australia, passionate about building secure, scalable,
-            and high-performance applications. My expertise bridges{" "}
-            <strong>backend engineering</strong>,{" "}
-            <strong>frontend development</strong>, and{" "}
-            <strong>Cloud/DevOps</strong> to deliver end-to-end solutions.
+            I'm a <strong>Full-Stack Software Engineer</strong> based in
+            Melbourne, building production systems that ship to real users. I
+            founded and solo-engineered{" "}
+            <strong>ArcusVision</strong> — a live AI productivity SaaS with{" "}
+            <strong>338+ active users</strong> — taking it from zero to
+            production across a Next.js, Go, and AWS stack. That's what I do:
+            I own things end to end.
           </p>
         </div>
 
         <div className="about-content">
           <article>
             <p>
-              It all began with a{" "}
-              <strong>
-                Bachelor's in Electronics &amp; Communication Engineering
-              </strong>
-              , where I built a strong foundation in computing and systems
-              thinking. This curiosity led me to the world of{" "}
-              <strong>software engineering</strong>, evolving into full-stack
-              and backend development.
-            </p>
-            <p>
-              Over the years, I've developed applications using
-              <strong> React.js</strong>, <strong>TypeScript</strong>,{" "}
-              <strong>Node.js</strong>,<strong> GoLang</strong>, and{" "}
-              <strong>Python</strong>. One highlight was leading the development
-              of an assessment platform that
-              <strong> improved accuracy by 25%</strong>, showing my ability to
-              deliver real business impact. I also enjoy designing APIs, and
-              building microservices ensures maintainability and performance.
+              My 3+ years of commercial experience spans IoT backend systems at{" "}
+              <strong>AquaTerra</strong> (AWS, Node.js), distributed assessment
+              platforms at <strong>Avasoft</strong> (TypeScript, Go), and
+              client-facing production websites. I work across the full stack —
+              REST APIs, event-driven pipelines, RAG implementations, CI/CD —
+              and I communicate clearly across engineering and product.
             </p>
           </article>
           <article>
             <p>
-              I recently enhanced my technical prowess via a{" "}
-              <strong>Master's in Information Technology</strong> at
-              <strong> RMIT University (Melbourne)</strong>, specialising in
-              <strong> Full-Stack Development</strong>,{" "}
-              <strong>Cloud Computing</strong>, and <strong>DevOps</strong>. I
-              have robust hands-on experience deploying scalable architecture on
-              <strong> AWS</strong> and setting up efficient{" "}
-              <strong>CI/CD pipelines</strong>.
-            </p>
-            <p>
-              Beyond coding, I value <strong>collaboration</strong>,
-              <strong> agile thinking</strong>, and{" "}
-              <strong>continuous learning</strong>. Whether contributing to
-              startups, open-source, or innovative side projects, my goal is to
-              build software that's not only functional but also
-              <strong> secure, maintainable, and future-ready</strong>.
+              I'm completing a{" "}
+              <strong>Master's in Information Technology</strong> at{" "}
+              <strong>RMIT Melbourne</strong>, specialising in Full-Stack
+              Development, Cloud Computing, and DevOps. I'm actively looking
+              for full-time Software Engineering roles in Melbourne from
+              mid-2026.
             </p>
           </article>
         </div>
       </Section>
+
+      <ArcusHero />
 
       <Section id="experience" title="Experience" activeSection={activeSection}>
         {experience.loading ? (
@@ -132,9 +118,29 @@ const MainContent = ({ onSectionChange }) => {
         ) : projects.data.length === 0 ? (
           <div className="empty">No project data found.</div>
         ) : (
-          sortedProjects.map((project) => (
-            <ProjectCard key={project.title} {...project} />
-          ))
+          <>
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.title} {...project} />
+            ))}
+            {earlierProjects.length > 0 && (
+              <div className="earlier-work">
+                <button
+                  className="earlier-work-toggle"
+                  onClick={() => setShowEarlierWork((s) => !s)}
+                >
+                  {showEarlierWork
+                    ? "Hide earlier work"
+                    : `Show ${earlierProjects.length} earlier project${
+                        earlierProjects.length !== 1 ? "s" : ""
+                      }`}
+                </button>
+                {showEarlierWork &&
+                  earlierProjects.map((project) => (
+                    <ProjectCard key={project.title} {...project} />
+                  ))}
+              </div>
+            )}
+          </>
         )}
       </Section>
 
@@ -148,9 +154,8 @@ const MainContent = ({ onSectionChange }) => {
 
       <Section id="contact" title="Contact" activeSection={activeSection}>
         <p className="text-muted">
-          💡 "Got a genius project idea? Or just want to chat about life, code,
-          or your favorite anime? 🎥✨ Drop me a message below, and I promise to
-          respond faster than Goku can go Super Saiyan! 🚀
+          Have a role or project you want to talk through? Drop me a message
+          and I'll get back to you fast.
         </p>
         <form id="contact-form" className="flex flex-col gap-2 p-medium">
           <input
