@@ -1,6 +1,7 @@
 // src/pages/CertificationsPage.js
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import CertificationsTable from "../components/certifications/CertificationsTable";
 import useCertifications from "../hooks/useCertifications";
 import "./CertificationsPage.css";
@@ -27,6 +28,17 @@ const CertificationsPage = () => {
 
   return (
     <div className="certifications-page">
+      <Helmet>
+        <title>Certifications — Dineshkumar Suresh | Software Engineer Melbourne</title>
+        <meta
+          name="description"
+          content="Full archive of professional certifications earned by Dineshkumar Suresh — AWS, TypeScript, React, Go, DevOps, Cloud Computing, and more. Melbourne-based Full Stack Engineer."
+        />
+        <link rel="canonical" href="https://dineshsuresh.com/certifications" />
+        <meta property="og:title" content="Certifications — Dineshkumar Suresh" />
+        <meta property="og:url" content="https://dineshsuresh.com/certifications" />
+        <meta property="og:description" content="Professional certifications by Dineshkumar Suresh — AWS, TypeScript, React, Go, DevOps, and Cloud Computing." />
+      </Helmet>
       <div className="certifications-page-header">
         <Link to="/" className="back-link">
           Back to Home
