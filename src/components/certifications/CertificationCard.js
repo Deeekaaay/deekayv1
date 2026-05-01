@@ -34,7 +34,7 @@ const CertificationCard = ({ title, description, image, tags, link, org }) => {
   return (
     <div ref={cardRef} className="project-card flex rounded shadow card-spacing">
       {/* Image on the left - matching ProjectCard */}
-      <div className="project-image">
+      <div className="project-image cert-image">
         {image && (
           <img
             className="rounded"

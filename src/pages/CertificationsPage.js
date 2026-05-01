@@ -11,17 +11,17 @@ const CertificationsPage = () => {
   // Extract unique providers from certifications data
   const providers = useMemo(() => {
     if (!certifications || certifications.length === 0) return [];
-    
+
     const uniqueProviders = new Map();
-    certifications.forEach(cert => {
+    certifications.forEach((cert) => {
       if (cert.org && cert.image && !uniqueProviders.has(cert.org)) {
         uniqueProviders.set(cert.org, {
           name: cert.org,
-          logo: cert.image
+          logo: cert.image,
         });
       }
     });
-    
+
     return Array.from(uniqueProviders.values()); // Show all unique providers
   }, [certifications]);
 
@@ -31,19 +31,25 @@ const CertificationsPage = () => {
         <Link to="/" className="back-link">
           Back to Home
         </Link>
-        
+
+        <h1 className="page-title">Certification Archive</h1>
+        <p className="page-subtitle">
+          A comprehensive record of my professional certifications, continuous
+          learning, and technical upskilling.
+        </p>
+
         {/* Provider Logos Carousel */}
         {providers.length > 0 && (
           <div className="providers-arc">
             <div>
               {/* Duplicate providers for seamless infinite scroll */}
               {[...providers, ...providers].map((provider, index) => (
-                <div 
-                  key={`${provider.name}-${index}`} 
+                <div
+                  key={`${provider.name}-${index}`}
                   className="provider-logo-wrapper"
                 >
-                  <img 
-                    src={provider.logo} 
+                  <img
+                    src={provider.logo}
                     alt={provider.name}
                     className="provider-logo"
                   />
@@ -52,20 +58,19 @@ const CertificationsPage = () => {
             </div>
           </div>
         )}
-
       </div>
 
-        {loading ? (
-          <div className="loading">Loading certifications...</div>
-        ) : error ? (
-          <div className="error">{error}</div>
-        ) : certifications.length === 0 ? (
-          <div className="empty">No certification data found.</div>
-        ) : (
-          <>
-            <CertificationsTable certifications={certifications} />
-          </>
-        )}
+      {loading ? (
+        <div className="loading">Loading certifications...</div>
+      ) : error ? (
+        <div className="error">{error}</div>
+      ) : certifications.length === 0 ? (
+        <div className="empty">No certification data found.</div>
+      ) : (
+        <>
+          <CertificationsTable certifications={certifications} />
+        </>
+      )}
     </div>
   );
 };

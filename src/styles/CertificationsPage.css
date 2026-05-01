@@ -68,7 +68,6 @@
     margin: 0 auto;
 }
 
-/* Provider Logos Carousel */
 .providers-arc {
     position: relative;
     width: 100%;
@@ -76,27 +75,8 @@
     margin: var(--spacing-large) auto;
     overflow: hidden;
     padding: var(--spacing-large) 0;
-}
-
-.providers-arc::before,
-.providers-arc::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 150px;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.providers-arc::before {
-    left: 0;
-    background: linear-gradient(to right, var(--background) 0%, transparent 100%);
-}
-
-.providers-arc::after {
-    right: 0;
-    background: linear-gradient(to left, var(--background) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 .providers-arc>div:first-child {

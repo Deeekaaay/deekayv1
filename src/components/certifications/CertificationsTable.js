@@ -22,7 +22,6 @@ const CertificationsTable = ({ certifications }) => {
       let aValue = a[sortConfig.key];
       let bValue = b[sortConfig.key];
 
-      // Handle different types
       if (sortConfig.key === 'tags') {
         aValue = a.tags?.join(',') || '';
         bValue = b.tags?.join(',') || '';
@@ -42,60 +41,40 @@ const CertificationsTable = ({ certifications }) => {
     return <p className="text-muted">No additional certifications to display.</p>;
   }
 
-  const SortIcon = ({ columnKey }) => {
-    if (sortConfig.key !== columnKey) {
-      return <i className="fi fi-rr-sort sort-icon"></i>;
-    }
-    return sortConfig.direction === 'asc' 
-      ? <i className="fi fi-rr-sort-amount-up-alt sort-icon active"></i>
-      : <i className="fi fi-rr-sort-amount-down sort-icon active"></i>;
-  };
-
   return (
-    <div className="certifications-table-container">
-      <table className="certifications-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th onClick={() => handleSort('title')} className="sortable">
-              Certificate <SortIcon columnKey="title" />
-            </th>
-            <th onClick={() => handleSort('org')} className="sortable">
-              Issuer <SortIcon columnKey="org" />
-            </th>
-            <th onClick={() => handleSort('tags')} className="sortable">
-              Skills <SortIcon columnKey="tags" />
-            </th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedCertifications.map((cert, index) => (
-            <tr key={index}>
-              <td className="cert-number">{index + 1}</td>
-              <td className="cert-title">{cert.title}</td>
-              <td className="cert-issuer">{cert.org || "N/A"}</td>
-              <td className="cert-tags">
+    <div className="certifications-list-container">
+      {/* Optional: Add a sorting dropdown/bar here if sorting is highly requested, 
+          but for now we default to the order from Google Sheets (usually chronological) */}
+      <div className="certifications-grid">
+        {sortedCertifications.map((cert, index) => (
+          <div key={index} className="certification-card">
+            <div className="cert-card-header">
+              <h3 className="cert-title">{cert.title}</h3>
+              {cert.link && (
+                <a
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="view-cert-link"
+                  aria-label={`View ${cert.title} certificate`}
+                >
+                  <i className="fi fi-rr-arrow-up-right-from-square"></i>
+                </a>
+              )}
+            </div>
+            
+            <p className="cert-issuer text-muted">
+              {cert.org || "N/A"}
+            </p>
+            
+            {cert.tags && cert.tags.length > 0 && (
+              <div className="cert-tags mt-4">
                 <TagList tags={cert.tags} />
-              </td>
-              <td className="cert-link">
-                {cert.link ? (
-                  <a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="view-cert-link"
-                  >
-                    View <i className="fi fi-rr-arrow-up-right-from-square"></i>
-                  </a>
-                ) : (
-                  <span className="text-muted">—</span>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

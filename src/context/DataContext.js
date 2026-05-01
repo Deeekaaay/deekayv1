@@ -92,6 +92,7 @@ export const DataProvider = ({ children }) => {
           description: row["Description"],
           tags: row["Tags"] ? row["Tags"].split(/,\s*/) : [],
           link: row["Link"],
+          showFirst: row["showFirst"] === "1" || row["showFirst"] === 1,
         }));
 
       writeCache(CACHE_KEYS.EXP_PROJECTS, {
