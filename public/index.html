@@ -33,11 +33,13 @@
       property="og:image"
       content="https://dineshsuresh.com/assets/favicon/apple-touch-icon.png"
     />
+    <meta property="og:image:alt" content="Dineshkumar Suresh — Full Stack Software Engineer Melbourne" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:site_name" content="Dineshkumar Suresh Portfolio" />
     <meta property="og:locale" content="en_AU" />
 
     <!-- ─── Twitter Card ─────────────────────────────────────────────────── -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://dineshsuresh.com/" />
     <meta
       name="twitter:title"
@@ -64,9 +66,15 @@
           "https://github.com/Deeekaaay"
         ],
         "jobTitle": "Full Stack Software Engineer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "RMIT University"
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "RMIT University",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Melbourne",
+            "addressRegion": "VIC",
+            "addressCountry": "AU"
+          }
         },
         "address": {
           "@type": "PostalAddress",
@@ -101,10 +109,18 @@
     <link rel="manifest" href="assets/favicon/site.webmanifest" />
     <meta name="theme-color" content="#0a0a0a" />
 
-    <!-- ─── Google Fonts (Inter) ─────────────────────────────────────────── -->
+    <!-- ─── Font Preload (IBM Plex Sans — primary body font) ────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
 
     <!-- ─── Icon CDN (preconnect first for speed) ────────────────────────── -->
     <link rel="preconnect" href="https://cdn-uicons.flaticon.com" crossorigin />
