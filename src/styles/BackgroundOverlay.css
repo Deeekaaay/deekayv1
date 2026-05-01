@@ -1,0 +1,59 @@
+/* src/styles/BackgroundOverlay.css */
+
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* FloatingLines wrapper — blurred and dimmed for depth without distraction */
+.bg-overlay__lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  filter: blur(3px);
+  opacity: 0.42;
+}
+
+/* Subtle engineering grid — structural, not loud */
+.bg-overlay__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.20;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Radial vignette — keeps text crisp at centre */
+.bg-overlay__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 70% at 50% 50%,
+    rgba(8, 20, 16, 0.75) 0%,
+    transparent 100%
+  );
+}
+
+/* Reduce grid opacity in light mode */
+.light-theme .bg-overlay__grid {
+  opacity: 0.06;
+}
+
+.light-theme .bg-overlay__vignette {
+  display: none;
+}
+
+/* Light mode fixes for WebGL - lower opacity so "screen" blending doesn't blow out text */
+.light-theme .bg-overlay__lines {
+  opacity: 0.04;
+}
