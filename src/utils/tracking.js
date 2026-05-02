@@ -125,12 +125,19 @@ Visit logged successfully! 🎉`;
 
   try {
     const response = await fetch(
-      `https://api.telegram.org/bot${TELEGRAM_CONFIG.BOT_TOKEN}/sendMessage?chat_id=${
-        TELEGRAM_CONFIG.CHAT_ID
-      }&text=${encodeURIComponent(message)}`,
+      `https://api.telegram.org/bot${TELEGRAM_CONFIG.BOT_TOKEN}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CONFIG.CHAT_ID,
+          text: message,
+        }),
+      },
     );
 
     const data = await response.json();
+    if (!data.ok) throw new Error(data.description || "Telegram API error");
     return data;
   } catch (error) {
     console.error("Error sending Telegram message:", error);
