@@ -5,7 +5,7 @@ import ExperienceCard from "../cards/ExperienceCard";
 import ProjectCard from "../cards/ProjectCard";
 import CertificationsSection from "../certifications/CertificationsSection";
 import ArcusHero from "./ArcusHero";
-import { handleContactFormSubmit } from "../../utils/emailService";
+import { sendEmail } from "../../utils/emailService";
 import { useData } from "../../context/DataContext";
 import Section from "./Section";
 import { SECTION_OBSERVER_OPTIONS } from "../../config/constants";
@@ -14,6 +14,43 @@ const MainContent = ({ onSectionChange }) => {
   const [activeSection, setActiveSection] = useState("about");
   const [showEarlierWork, setShowEarlierWork] = useState(false);
   const { experience, projects } = useData();
+
+  // Contact form state
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitStatus, setSubmitStatus] = useState("idle"); // idle, loading, success, error
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setSubmitStatus("error");
+      setSubmitMessage("Please fill out all fields before sending.");
+      return;
+    }
+
+    setSubmitStatus("loading");
+    setSubmitMessage("");
+
+    try {
+      const result = await sendEmail(formData);
+      if (result.status === 200) {
+        setSubmitStatus("success");
+        setSubmitMessage("Thank you for reaching out. Your message has been sent successfully, and I will get back to you shortly.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+        setSubmitMessage("We encountered an issue sending your message. Please try again later.");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage("We encountered an issue sending your message. Please try again later.");
+    }
+  };
 
   // Featured = showFirst flag from sheet; fallback = tags.length > 5
   const featuredProjects = React.useMemo(() => {
@@ -156,11 +193,13 @@ const MainContent = ({ onSectionChange }) => {
           Have a role or project you want to talk through? Drop me a message
           and I'll get back to you fast.
         </p>
-        <form id="contact-form" className="flex flex-col gap-2 p-medium">
+        <form id="contact-form" className="flex flex-col gap-2 p-medium" onSubmit={handleContactSubmit}>
           <input
             type="text"
             id="name"
             name="name"
+            value={formData.name}
+            onChange={handleFormChange}
             placeholder="Your Name"
             required
             className="p-small m-small rounded"
@@ -169,6 +208,8 @@ const MainContent = ({ onSectionChange }) => {
             type="email"
             id="email"
             name="email"
+            value={formData.email}
+            onChange={handleFormChange}
             placeholder="Your Email"
             required
             className="p-small m-small rounded"
@@ -176,17 +217,31 @@ const MainContent = ({ onSectionChange }) => {
           <textarea
             id="message"
             name="message"
+            value={formData.message}
+            onChange={handleFormChange}
             rows="5"
             placeholder="Your Message"
             required
             className="p-small m-small rounded"
           ></textarea>
+          
+          {submitStatus === "success" && (
+            <div className="text-green-500 m-small p-small rounded bg-green-500/10 border border-green-500/20">
+              {submitMessage}
+            </div>
+          )}
+          {submitStatus === "error" && (
+            <div className="text-red-500 m-small p-small rounded bg-red-500/10 border border-red-500/20">
+              {submitMessage}
+            </div>
+          )}
+
           <button
-            type="button"
-            onClick={handleContactFormSubmit}
-            className="rounded"
+            type="submit"
+            disabled={submitStatus === "loading"}
+            className="rounded disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Send
+            {submitStatus === "loading" ? "Sending..." : "Send"}
           </button>
         </form>
       </Section>

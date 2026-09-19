@@ -34,35 +34,3 @@ export const sendEmail = async (formData) => {
   }
 };
 
-/**
- * Handle form submission and send email
- * @param {Event} e - Form submit event
- */
-export const handleContactFormSubmit = async (e) => {
-  e.preventDefault();
-
-  const formData = {
-    name: document.getElementById("name").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    message: document.getElementById("message").value.trim(),
-  };
-
-  try {
-    const result = await sendEmail(formData);
-
-    if (result.status === 200) {
-      alert(
-        "Message sent successfully! 🎉 Check your email for confirmation. 😊"
-      );
-
-      // Clear the form after successful submission
-      document.getElementById("name").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("message").value = "";
-    } else {
-      alert("Something went wrong. Please try again.");
-    }
-  } catch (error) {
-    alert(error.message);
-  }
-};
