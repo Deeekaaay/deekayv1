@@ -100,7 +100,7 @@ const MainContent = ({ onSectionChange }) => {
             I'm a <strong>Full-Stack Software Engineer</strong> based in
             Melbourne. I founded and solo-engineered{" "}
             <strong>ArcusVision</strong> — a live AI productivity SaaS — from a
-            blank repo to <strong>338+ active users</strong>, handling
+            blank repo to a live product, handling
             architecture, APIs, cloud infra, and CI/CD entirely alone. I don't
             just build features. I ship products.
           </p>

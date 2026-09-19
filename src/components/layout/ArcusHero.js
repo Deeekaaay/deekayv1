@@ -25,11 +25,7 @@ const ArcusHero = () => (
 
       {/* Metrics row */}
       <div className="arcus-hero__metrics">
-        <div className="arcus-hero__metric">
-          <span className="arcus-hero__metric-value">338+</span>
-          <span className="arcus-hero__metric-label">active users</span>
-        </div>
-        <div className="arcus-hero__metric-divider" />
+
         <div className="arcus-hero__metric">
           <span className="arcus-hero__metric-value">Solo</span>
           <span className="arcus-hero__metric-label">end-to-end ownership</span>
